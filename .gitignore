@@ -1,3 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 # User-specific stuff:
 /.idea/*
+*.aux
+*.swp
+*.log
+*.toc
+*.fls
+*.out
+*.fdb_latexmk
