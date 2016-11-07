@@ -11,7 +11,7 @@
 \usepackage{vmargin}
 \setmarginsrb{3 cm}{2.5 cm}{3 cm}{2.5 cm}{1 cm}{1.5 cm}{1 cm}{1.5 cm}
 
-\title{PowerEnjoy}                             % Title
+\title{PowerEnjoy\\RASD}                             % Title
 \date{\today}                                           % Date
 
 \makeatletter
@@ -45,12 +45,12 @@
 	 Giorgio De Luca
 	
             \end{flushleft}
-            \end{minipage}~
+            \end{minipage}~ 
             \begin{minipage}{0.4\textwidth}
             \begin{flushright} \large
-            XXXXXX000 \\
-            XXXXXX000 \\
-            XXXXXX000                                   
+            874206  \\
+            873513 \\
+            875598
         \end{flushright}
     \end{minipage}\\[2 cm]
     
@@ -66,20 +66,11 @@
 \pagebreak
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Chapter 1}
-\section{About this design}
-This is a simple report template with the UCT logo. Feel free to use/modify it to suit your needs. Variables that need to be altered have been commented to make modifications easier. For example if you need to change the university logo, look for the comment \texttt{\% University Logo} in this file and then make appropriate modifications in that line.
 
-\subsection{subsection}
-A Table of Contents and a bibliography have also been implemented. To add entries to your bibliography, simply edit \texttt{biblist.bib} in the root folder and then use the \texttt{\textbackslash cite\{\ldots\}} command in \texttt{main.tex} \cite{bibtex}. The Table of Contents will be updated automatically.
+\input{introduction/introduction}
+\input{overall_desc/overall_desc}
+\input{specific_req/specific_req}
+\input{alloy/alloy}
 
-\subsubsection{subsubsection}
-I hope that you find this template both visually appealing and useful. \\
-
-\hspace{1 cm}--- Linus
-
-\newpage
-\bibliographystyle{plain}
-\bibliography{biblist}
 
 \end{document}
