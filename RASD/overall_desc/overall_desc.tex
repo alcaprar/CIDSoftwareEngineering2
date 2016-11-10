@@ -1,23 +1,71 @@
 \chapter{Overall description}
 
 \section{Prodcut perspective}
+The PowerEnjoy application will consist of a mobile and a web application for clients, that offer the same functionalities, and an internal interface for the system administrator.
+
+The system also relies on existing external services and their interactions will be described later in this document.
 
 \section{User characteristic}
+There are two main classes of users in our system: Clients and System Administrators.
+
+The System Administrators are in charge of managing administration processes and of updating business logic. These users can analyze data in order to produce reports and statistics about the quality of service.
+
+A Client is a person that wants to use this application is a person that wants to move across the city using a car without the responsibility of owning it.
 
 \section{Constraints}
 
 \subsection{Regulatory policies}
 
+The system has to manage sensible data such as email addresses and phone numbers to communicate with users, GPS tracking to locate the clients and credit cards information for payments.
+Registered Clients must agree with the privacy policy of our software to use it.
+
 \subsection{Hardware policies}
+For the mobile application the system requests that the client’s device has:
+\begin{itemize}
+\item active internet connection;
+\item enough space in the device memory;
+\item active GPS, if the client doesn’t want to put manually the address of her/his position.
+\end{itemize}
+
+For the Web Application the system requires that the browser support at least websockets component. As a reference we use this tool:  http://caniuse.com/\#feat=websockets.
 
 \subsection{Interfaces to other applications}
+\begin{itemize}
+\item Google maps: to provide to the user information about the position of the cars and how to reach them.
+\item Driving licences database: to check, during the registration step, whether a driving licence is valid or not.
+\item Payment interface service: to manage financial transactions related to PowerEnJoy service.
+\item SMS gateway provider: in order to send notifications to clients.
+\item GPS system: to locate clients.
+\end{itemize}
 
 \subsection{Parallel operations}
+The server can handle parallel operations and requests related to different clients.
 
 \section{Assumptions and dependencies}
 
 \subsection{Assumptions}
+\begin{enumerate}[label=A\arabic*]
+\item The Clients can leave the rented cars only in one of the safe areas.[see Safe Area in Definitions]
+\item There isn’t an old system providing the same services.
+\item Only registered clients can use the services of PowerEnjoy.
+\item There’s no car having the same plate.
+\item Each car of PowerEnjoy is conformed to have at most 5 passengers, driver included.
+\item The client that does a reservation can take with him/her in the car at most 4 passengers.
+\item The car sharing service is operating 24 hours per day, 7 days a week, 365 days per year.
+\item The position of each car is known using the GPS signal. Each car is provided of an autonomous GPS system reachable from our service.
+\item In the cars there are sensors that provides the system information about the current number of passengers.
+\item The cars can only be parked in a safe area.
+\item A client can maintain his/her reservation of the car during a stop, parking the car temporary in a not safe area. This is allowed only if the client proclaim the intention to do that through the application. During this stop the client continues to pay with some reduction of the standard hiring cost.
+\item The external services are not affected by downtimes or unavailability.
+\item Users own skills to interact correctly with the system.
+\item Users own at least one device to use the functionalities of the system.
+\item External services provide to our system consistent and valid information.
+\end{enumerate}
 
-\subsection{}
+\subsection{Dependencies}
 
 \section{Future possible implementations}
+\begin{itemize}
+\item Extend  the system in order to manage the rent of new kind of vehicle.
+\item Extend the system to let users filter cars by selecting their desired characteristics(such as number of possible passengers, dimension of the car, minimum desired charge).
+\end{itemize}
