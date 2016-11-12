@@ -48,13 +48,14 @@ If the Registered Clients doesn’t reach the car before this time expires, the 
 \item The system unlock the chosen car only when the Registered Client is nearby and he/she communicates this to the system through the application.
 \item The system locks the car when the Registered Client parks it in a safe area or in a power grid station and he/she communicates the system the intention of ending the rent.
 \item When the rent is finished the system marks the car as “available” again.
-\item The system starts charging the Registered Client for a given amount of money as soon as the engine ignites.
+\item The system starts charging the Registered Client for a given amount of money per minute as soon as the engine ignites.
 \item The system stops charging the user as soon as the car is parked in a safe area or in a power grid station and the Registered Client exits the car.
 Then the system start the payment procedure.
 \item The system allows the Registered Client to start driving if and only if he/she insert his/her personal code.
 \item The system allows the Registered Client to choose an address in which he/she wants to hire a car or if he/she wants to be located through the GPS signal.
 \item The system must supervise the charge of the car during all the rental period, showing the current charge on the GPS navigation device.
 It also has to show a warning notice if the charge is equal to the minimum possible charge admitted.
+\item The system allows the Registered Client to find the location of an available car within a certain distance from his/her current location.
 \end{enumerate}
 
 \subsection{[G2] - The Registered Client can hire a car through an SMS.}
@@ -71,7 +72,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \item The system locks the car when the Registered Client parks it in a safe area or in a power grid station and he/she communicates the system the intention of ending the rent.
 \item The system marks the car ‘available’ again once it is locked.
 \item The system allows the Registered Client to start driving if and only if he/she insert his/her personal code.
-\item The system starts charging the Registered Client for a given amount of money as soon as the engine ignites.
+\item The system starts charging the Registered Client for a given amount of money per minute as soon as the engine ignites.
 \item The system stops charging the user as soon as the car is parked in a safe area or in a power grid station and the Registered Client exits the car. Then the system start the payment procedure.
 \item The system must supervise the charge of the car during all the rental period, showing the current charge on the GPS navigation device. It also has to show a warning notice if the charge is equal to the minimum possible charge admitted.
 \end{enumerate}
@@ -86,11 +87,8 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \item The system considers a phone number valid if and only if the user inserts the code sent by the system through an SMS.
 \item The registration procedure requires the Guest Client to indicate his/her driving licence.
 \item The system requires the Registered Client to specify one valid payment method.
+\item The system must send back to the Registered Client’s email a password that he/she can use to access the system.
 \end{enumerate}
-
-
-
-
 
 \subsection{[G4] - Registered Clients can login into the system.}
 \begin{enumerate}[label=R4.\arabic*]
@@ -114,6 +112,10 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \begin{enumerate}[label=R6.\arabic*]
 \item During the entire rent period the system must check if some conditions happen in order to apply a discount on the final rent cost are satisfied.
 \item The system allows the Registered Client to enable the ‘save money’ option at the beginning of his/her ride through the GPS navigation device.
+\item If the system detects the Registered Client took at least two other passengers onto the car, the system applies a discount of 10% on the last ride.
+\item If a car is left with more than 50% of charge, the system applies a discount of 20% on the last ride.
+\item If a car is left in a power grid station and the Registered Client takes care of plugging the car into the power grid, the system applies a discount of 30% on the last ride.
+
 \end{enumerate}
 
 \subsection{[G7] - Ensure a uniform distribution of cars in the city.}
@@ -130,6 +132,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \begin{enumerate}[label=R9.\arabic*]
 \item The system must disallow not certified system administrators to perform such operations.
 \item The system must guarantee integrity and consistency of data after eventual updates performed on them.
+\item The system allows the system administrators to add new Safe Area in the set of Safe Area predefined by the management system.
 \end{enumerate}
 
 \subsection{[G10] - Guarantee a correct interoperability of the system with external services.}
@@ -137,6 +140,11 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \item The system must always be able to perform requests to external services, when they’re needed.
 \end{enumerate}
 
+\subsection{[G11] - Ensure that a Registered Client’s bad behaviour is punished with the application of some penalties.}
+\begin{enumerate}[label=R11.\arabic*]
+\item If a car is left at more than 3 KM from the nearest power grid station, the system charges 30% more on the last ride.
+\item If a car is left with more than 80% of the battery empty, the system charges 30% more on the last ride.
+\end{enumerate}
 \section{Scenario}
 \subsection{Scenario 1}
 Frank and his flatmates have nothing to eat for lunch and they need to go to the supermarket, that is not close to Frank’s house.
