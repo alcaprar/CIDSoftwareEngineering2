@@ -217,6 +217,97 @@ Then James reaches his destination without problems.
 
 \subsection{Use cases}
 
+\subsubsection{Use cases diagram}
+
+\clearpage
+\subsubsection{Use cases description}
+\begin{itemize}
+\item Registration
+
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{l|X}
+\centering
+Name & Sign up \\ \hline
+Actor & Guest \\ \hline
+Entry conditions & -- \\ \hline
+Flow of events & 1. Guest clicks the "Sign up " button and the registration page is shown. \\
+& 2. He/she fills the form with his/her personal details and presses the “Sign Up” button.\\
+& 3. The system checks the data submitted by the guest, in particular if all the mandatory fields have been filled, and if there are no problems he/she is registered into the system. In addition the system sends back to the new user an email with an activation link and a password that he/she can use to access the system.\\
+& 4. The user opens the email and clicks the activation links. The system activates the user. \\ \hline
+Exit conditions & The user receives an email to confirm the registration and a password to login \\ \hline
+Exceptions & If one value of the form is not valid or missing(concerning the mandatory fields), the registration is not possible and the app shows an alert indicating the errors. If the user is already registered with the information provided, the system forbid him/her to create a new account. \\
+\end{tabularx}
+\end{table}
+
+\clearpage
+
+\item Login
+
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{l|X}
+\centering
+Name & Sign in \\ \hline
+Actor & Guest, Registered client \\ \hline
+Entry conditions & Guest must already have credentials \\ \hline
+Flow of events & 1. Guest clicks “Sign in” button and the login page is shown. \\
+& 2. He/she writes his/her username and password and clicks the “Sign in” button.\\
+& 3. The system checks the credentials and if they are valid the user is logged. \\
+& 4. The systems shows the main page to the user. \\ \hline
+Exit conditions & Guest is promoted to a Registered client. \\ \hline
+Exceptions & If the credentials passed to the system are not valid the app shows an alert indicating the errors. If the Registered Client doesn’t remember either his/her username or his/her password the system allows to start the procedure to recover it. \\
+\end{tabularx}
+\end{table}
+
+\clearpage
+\item Reservation through web/mobile application
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{l|X}
+\centering
+Name & Reserve a car through web/mobile application \\ \hline
+Actor & Registered client \\ \hline
+Entry conditions & Registered Client must be already logged into the system. \\ \hline
+Flow of events & 1. The Registered Client look for a car nearby his/her current position or near a specified address. \\
+& 2. The Registered Client makes a reservation of a car, by a click on the “Reserve” button.\\
+& 3. The Registered Client reaches the reserved car and clicks on the “I’m nearby” button, to let the system unlock the car doors. \\
+& 4. The Registered Client enters the car and insert in the GPS navigation device his/her personal pin code. \\ \hline
+Exit conditions & The Registered Client terminates his/her rent through the “Terminate Rent” button in the GPS navigation device and automatically pays for the rent through the payment method specified during the registration procedure. \\ \hline
+Exceptions & If the Registered Client doesn’t reach the reserved car in one hour from the reservation the system applies him/her a penalty, marks the reservation as not valid anymore and the car as available again. If the Registered Client has already an active reservation, the system shows an alert indicating the kind of error. \\
+\end{tabularx}
+\end{table}
+
+\clearpage
+\item Reservation through SMS
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{l|X}
+\centering
+Name & Reserve a car through SMS \\ \hline
+Actor & Registered client \\ \hline
+Entry conditions & The Registered Client is nearby the car he/she wants to rent. \\ \hline
+Flow of events & 1. The Registered Client sends an SMS with the caption “Hire” followed by the plate of the car he/she wants to rent. \\
+& 2. The Registered Client receives a confirmation SMS and writes another SMS with the caption “Open”.\\
+& 3. The Registered Client waits until the doors are unlocked. \\
+& 4. The Registered Client enters the car and insert in the GPS navigation device his/her personal pin code. \\ \hline
+Exit conditions & The Registered Client terminates his/her rent through the “Terminate Rent” button in the GPS navigation device and automatically pays for the rent through the payment method specified during the registration procedure. \\ \hline
+Exceptions & If the Registered Client doesn’t send the “Open” SMS within one hour  the system applies him/her a penalty, marks the reservation as not valid anymore and the car as available again. If the phone number used for reservation is not associated to any Registered Client in the database, the system sends a warning SMS pointing out the error. If the phone number is associated to a Registered Client but he/she has already an active reservation, the system sends a warning SMS pointing out the error. \\
+\end{tabularx}
+\end{table}
+
+\clearpage
+\item System Administrator login
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{l|X}
+\centering
+Name & System Administrator login \\ \hline
+Actor & System Administrator \\ \hline
+Entry conditions & The system administrator is registered in the system\\ \hline
+Flow of events & 1. The system administrator opens the administration page. \\
+& 2. The system administrator inserts his/her credentials.\\ \hline
+Exit conditions & The system administrator is now capable of doing his/her tasks. \\ \hline
+Exceptions & If the credentials provided are not valid, the system shows an alert indicating the error. \\
+\end{tabularx}
+\end{table}
+\end{itemize}
+
 \subsection{Sequence diagrams}
 
 \subsection{Class diagrams}
