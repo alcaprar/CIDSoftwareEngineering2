@@ -10,6 +10,46 @@ External Interface Required for PowerEnjoy:
 \end{itemize}
 
 \subsection{User interfaces}
+\subsubsection{Home mobile app}
+\begin{center}
+\includegraphics[]{../images/mookup/Homepage_mobile}
+\end{center}
+
+\clearpage
+\subsubsection{Home web app}
+\begin{center}
+\includegraphics[]{../images/mookup/homepage_web}
+\end{center}
+
+\clearpage
+\subsubsection{Reservation mobile app}
+\begin{center}
+\includegraphics[]{../images/mookup/Reservation_mobile}
+\end{center}
+
+\clearpage
+\subsubsection{Reservation web app}
+\begin{center}
+\includegraphics[]{../images/mookup/Reservation_web}
+\end{center}
+
+\clearpage
+\subsubsection{Account details mobile app}
+\begin{center}
+\includegraphics[]{../images/mookup/Account_mobile_sx}
+
+\clearpage
+\includegraphics[]{../images/mookup/Account_mobile_dx}
+\end{center}
+
+\clearpage
+\subsubsection{Account details web app}
+\begin{center}
+\includegraphics[]{../images/mookup/Account_web}
+\end{center}
+
+
+
 
 \subsection{Hardware interfaces}
 The hardware interfaces of our system are:
@@ -50,7 +90,7 @@ If the Registered Clients doesn’t reach the car before this time expires, the 
 \item When the rent is finished the system marks the car as “available” again.
 \item The system starts charging the Registered Client for a given amount of money per minute as soon as the engine ignites.
 \item The system stops charging the user as soon as the car is parked in a safe area or in a power grid station and the Registered Client exits the car.
-Then the system start the payment procedure.
+Then the system starts the payment procedure.
 \item The system allows the Registered Client to start driving if and only if he/she insert his/her personal code.
 \item The system allows the Registered Client to choose an address in which he/she wants to hire a car or if he/she wants to be located through the GPS signal.
 \item The system must supervise the charge of the car during all the rental period, showing the current charge on the GPS navigation device.
@@ -66,7 +106,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \item The system sends an SMS to communicate the Registered Client the outcome of his/her request.
 \item If the request has been accepted, the system marks the car as ‘unavailable’ and reserves it.
 \item The system unlocks the car if and only if it receives an ‘unlock’ SMS from  the same phone number that has reserved it.
-\item The system deletes the request of reservation if and only if it receives a ‘delete’ SMS from the same phone number that has done the reservation. The system locks the car and mark it as available again.
+\item The system deletes the request of reservation if and only if it receives a ‘delete’ SMS from the same phone number that has done the reservation. The system and mark the car as available again.
 \item The system considers the reservation request as valid for at most one hour from the moment in which the request of hiring is accepted. If the Registered Client doesn’t send an ‘unlock’ SMS before this time expires, the system gives him/her a penalty of one euro and mark the car as ‘available’ again.
 \item When the rent finishes the system sends the Registered Client an SMS with a recap of the overall cost of the rent.
 \item The system locks the car when the Registered Client parks it in a safe area or in a power grid station and he/she communicates the system the intention of ending the rent.
@@ -112,9 +152,9 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \begin{enumerate}[label=R6.\arabic*]
 \item During the entire rent period the system must check if some conditions happen in order to apply a discount on the final rent cost are satisfied.
 \item The system allows the Registered Client to enable the ‘save money’ option at the beginning of his/her ride through the GPS navigation device.
-\item If the system detects the Registered Client took at least two other passengers onto the car, the system applies a discount of 10% on the last ride.
-\item If a car is left with more than 50% of charge, the system applies a discount of 20% on the last ride.
-\item If a car is left in a power grid station and the Registered Client takes care of plugging the car into the power grid, the system applies a discount of 30% on the last ride.
+\item If the system detects the Registered Client took at least two other passengers onto the car, the system applies a discount of 10\% on the last ride.
+\item If a car is left with more than 50\% of charge, the system applies a discount of 20% on the last ride.
+\item If a car is left in a power grid station and the Registered Client takes care of plugging the car into the power grid, the system applies a discount of 30\% on the last ride.
 
 \end{enumerate}
 
@@ -142,8 +182,8 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 
 \subsection{[G11] - Ensure that a Registered Client’s bad behaviour is punished with the application of some penalties.}
 \begin{enumerate}[label=R11.\arabic*]
-\item If a car is left at more than 3 KM from the nearest power grid station, the system charges 30% more on the last ride.
-\item If a car is left with more than 80% of the battery empty, the system charges 30% more on the last ride.
+\item If a car is left at more than 3 KM from the nearest power grid station, the system charges 30\% more on the last ride.
+\item If a car is left with more than 80\% of the battery empty, the system charges 30\% more on the last ride.
 \end{enumerate}
 \section{Scenario}
 \subsection{Scenario 1}
@@ -370,7 +410,7 @@ The web application app is written in HTML5, CSS3 and Javascript using Riot.js a
 \subsection{Software system attributes}
 
 \subsubsection{Availability}
-The system must be accessible anytime, with a downtime ratio of 0.01 %.\\
+The system must be accessible anytime, with a downtime ratio of 0.01 \%.\\
 In order to achieve this goal the system uses Nginx as a proxy server.\\
 This software manages more instances of the application server in order to have:
 \begin{itemize}
