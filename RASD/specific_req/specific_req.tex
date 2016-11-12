@@ -221,16 +221,20 @@ Since the day is rainy he decides to hire a car of PowerEnjoy.
 When he finally enters the car, he finds out that the car has been left in bad conditions by the previous user.
 So before starting his ride, James reports the system all the present issues of the cars through the GPS navigation device, in order to not be responsible of them and to help PowerEnjoy to take measures.
 Then James reaches his destination without problems.
-\section{UML models}
-
-\subsection{Use cases}
-
-\subsubsection{Use cases diagram}
 
 \clearpage
-\subsubsection{Use cases description}
-\begin{itemize}
-\item Registration
+\section{UML models}
+
+\subsection{Use cases diagram}
+\subsubsection{General use case}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/use_cases/general.pdf}
+
+\subsubsection{Rent use case}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/use_cases/rent.pdf}
+
+\clearpage
+\subsection{Use cases description}
+\subsubsection{Registration}
 
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{l|X}
@@ -249,7 +253,7 @@ Exceptions & If one value of the form is not valid or missing(concerning the man
 
 \clearpage
 
-\item Login
+\subsubsection{Login}
 
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{l|X}
@@ -267,7 +271,7 @@ Exceptions & If the credentials passed to the system are not valid the app shows
 \end{table}
 
 \clearpage
-\item Reservation through web/mobile application
+\subsubsection{Reservation through web/mobile application}
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{l|X}
 \centering
@@ -284,7 +288,7 @@ Exceptions & If the Registered Client doesn’t reach the reserved car in one ho
 \end{table}
 
 \clearpage
-\item Reservation through SMS
+\subsubsection{Reservation through SMS}
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{l|X}
 \centering
@@ -301,7 +305,7 @@ Exceptions & If the Registered Client doesn’t send the “Open” SMS within o
 \end{table}
 
 \clearpage
-\item System Administrator login
+\subsubsection{System Administrator login}
 \begin{table}[!h]
 \begin{tabularx}{\linewidth}{l|X}
 \centering
@@ -314,14 +318,41 @@ Exit conditions & The system administrator is now capable of doing his/her tasks
 Exceptions & If the credentials provided are not valid, the system shows an alert indicating the error. \\
 \end{tabularx}
 \end{table}
-\end{itemize}
 
 \subsection{Sequence diagrams}
 
+\subsubsection{Login}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/login.pdf}
+
+
+ \subsubsection{Registration}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/registration.pdf}
+
+
+\subsubsection{Car reservation through mobile or web application}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/reservation.pdf}
+
+
+\subsubsection{Car reservation through SMS}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/sms_reservation.pdf}
+
+
+\subsubsection{Cancel reservation}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/cancel_reservation.pdf}
+
+
+\subsubsection{Car usage}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/sequence/car_usage.pdf}
+
+
 \subsection{Class diagrams}
 
-\subsection{State chart diagrams}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/class/class_diagram.pdf}
 
+\subsection{State chart diagrams}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/diagram/state_chart/car_status.pdf}
+
+\clearpage
 \section{Non-functionals requirements}
 
 \subsection{Performance requirements}
@@ -358,9 +389,3 @@ In addition to this, the web application id design with a responsive layout in o
 All the connection between clients’ app (mobile and web) and server are under secure websocket (wss).\\
 This protocol is an analog of HTTPS, that uses SSL to avoid man-in-the-middle attack, encrypting all the data exchanged among the two parties.\\
 Furthermore all the sensible data stored in our DB are encrypted, meaning that also the system administrator does not have access to those data.
-
-\subsubsection{External Interface side}
-
-\subsubsection{Application side}
-
-\subsubsection{Server side}
