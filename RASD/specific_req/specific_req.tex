@@ -73,12 +73,12 @@ Its main functionalities are:
 \item Websocket library: Socket.io
 \end{itemize}
 \subsection{Comunication interfaces}
-The system communicates using websocket, that makes possible to have an effective real-time application..
+The system communicates using websocket, that makes possible to have an effective real-time application.
 
 \section{Functional requirements}
 
-\subsection{ [G1] - The Registered Client can hire a car through web/mobile application}
-\begin{enumerate}[label=R1.\arabic*]
+\subsection{[G1] - The Registered Client can hire a car through web/mobile application}
+\begin{enumerate}[label=\textbf{R1.\arabic*)}]
 \item The system allows the Registered Client to choose the car to hire only between the available ones.
 \item The system allows only one reservation per time for each Registered Client.
 \item The system allows the Registered Client to cancel his/her request.
@@ -99,7 +99,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \end{enumerate}
 
 \subsection{[G2] - The Registered Client can hire a car through an SMS.}
-\begin{enumerate}[label=R2.\arabic*]
+\begin{enumerate}[label=\textbf{R2.\arabic*)}]
 \item The system must check that the SMS is sent from a phone number related to a Registered Client account.
 \item The system accepts only well formed SMS messages, that follow a precise pattern: “Action + plate”.
 \item The system must check a correspondence of the plate indicated by the Registered Client with one of the cars in its database labeled as available.
@@ -118,7 +118,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \end{enumerate}
 
 \subsection{[G3] - The Guest Client can register himself/herself into the system as Registered Client.}
-\begin{enumerate}[label=R3.\arabic*]
+\begin{enumerate}[label=\textbf{R3.\arabic*)}]
 \item The system requests an e-mail and a telephone number during the registration.
 \item The system rejects an e-mail and a telephone number already used by another Registered Client.
 \item Once the registration procedure is successfully completed, the system sends a confirmation email to the new Registered Client.
@@ -131,14 +131,14 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \end{enumerate}
 
 \subsection{[G4] - Registered Clients can login into the system.}
-\begin{enumerate}[label=R4.\arabic*]
+\begin{enumerate}[label=\textbf{R4.\arabic*)}]
 \item The system allows only Registered Clients, with valid access credentials to login in the application.
 \item The system allows Registered Clients that have forgotten their password to recover it, sending an email with a temporary password to the e-mail address indicated during the registration procedure.
 \item The system requires Registered Clients to enter valid username (email address) and password to login.
 \end{enumerate}
 
 \subsection{[G5] - The Logged Client can manage his/her sensible data.}
-\begin{enumerate}[label=R5.\arabic*]
+\begin{enumerate}[label=\textbf{R5.\arabic*)}]
 \item The system allows the Logged Client to change his/her payment method.
 \item The system allows the Logged Client to change his/her current password.
 \item The system allows Logged Client to change his/her own email address. The system considers valid the new email address if and only if the Logged Client open the activation link in the confirmation e-mail sent by the system at the end of the procedure.
@@ -149,7 +149,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \end{enumerate}
 
 \subsection{[G6] - Ensure the Registered Client the possibility to receive a discount on his/her last ride.}
-\begin{enumerate}[label=R6.\arabic*]
+\begin{enumerate}[label=\textbf{R6.\arabic*)}]
 \item During the entire rent period the system must check if some conditions happen in order to apply a discount on the final rent cost are satisfied.
 \item The system allows the Registered Client to enable the ‘save money’ option at the beginning of his/her ride through the GPS navigation device.
 \item If the system detects the Registered Client took at least two other passengers onto the car, the system applies a discount of 10\% on the last ride.
@@ -159,29 +159,29 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \end{enumerate}
 
 \subsection{[G7] - Ensure a uniform distribution of cars in the city.}
-\begin{enumerate}[label=R7.\arabic*]
+\begin{enumerate}[label=\textbf{R7.\arabic*)}]
 \item The system, considering the actual distribution of the cars in the area, must always highlight through the GPS navigation device the area in which the client may park the car
 \end{enumerate}
 
 \subsection{[G8] - Guarantee to have always a minimum number of cars in the system with enough charge to be hired.}
-\begin{enumerate}[label=R8.\arabic*]
+\begin{enumerate}[label=\textbf{R8.\arabic*)}]
 \item The system must report a warning if it detects that the number of cars in the system with enough charge to be hires is less than the minimum possible.
 \end{enumerate}
 
 \subsection{[G9] - Allow the system administrator to update and check data in the database of the system.}
-\begin{enumerate}[label=R9.\arabic*]
+\begin{enumerate}[label=\textbf{R9.\arabic*)}]
 \item The system must disallow not certified system administrators to perform such operations.
 \item The system must guarantee integrity and consistency of data after eventual updates performed on them.
 \item The system allows the system administrators to add new Safe Area in the set of Safe Area predefined by the management system.
 \end{enumerate}
 
 \subsection{[G10] - Guarantee a correct interoperability of the system with external services.}
-\begin{enumerate}[label=R10.\arabic*]
+\begin{enumerate}[label=\textbf{R10.\arabic*)}]
 \item The system must always be able to perform requests to external services, when they’re needed.
 \end{enumerate}
 
 \subsection{[G11] - Ensure that a Registered Client’s bad behaviour is punished with the application of some penalties.}
-\begin{enumerate}[label=R11.\arabic*]
+\begin{enumerate}[label=\textbf{R11.\arabic*)}]
 \item If a car is left at more than 3 KM from the nearest power grid station, the system charges 30\% more on the last ride.
 \item If a car is left with more than 80\% of the battery empty, the system charges 30\% more on the last ride.
 \end{enumerate}
