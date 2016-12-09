@@ -1,0 +1,84 @@
+\chapter{Introduction}
+
+\section{Purpose}
+This document represents the Design Document \(DD\).
+The main purpose is to describe the system in terms of its components, providing a detailed description of the high level architecture, the design patterns we are going to use, the analysis of the internal and external interactions of the components.
+This document is addressed to developers that have to implement the software.
+
+\section{Scope}
+The aim of the project PowerEnJoy is to provide an automated service of car sharing.
+After a registration, a client can hire a car near him/her through the web or mobile application and he/she can enjoy of all the extra services offered.
+The exact position of the client is determined by the GPS signal of the client’s device or it’s allowed to manually insert a specific address.
+So the system displays all the available cars in the client’s close area.
+Then the client could make a reservation of a car, after which the system notifies the client with a message of confirmation with the car identifier.
+If the reservation procedure successfully ends the chosen car won’t be available anymore for other clients.
+Moreover a client cannot hire more than one car at the same time.
+After the reservation the client has at most one hour to reach the car, when this time expires the system gives a penalty to the client and the car, previously hired, is available again for other clients.
+The system allows the client to cancel his/her reservation.
+When the client reaches the car, he/she can tell the system that is nearby through a specific button in the application and he/she starts to pay as soon as the engine ignites.
+During the travel the system supervises the current charge of the car and notifies it to the client through a screen located in the car.
+The system stops charging the amount of money that the client has to pay when he/she communicates through the application his/her decision to stop the rent.
+When the car is parked in a safe area and the client exits, the system locks the car automatically and starts the procedure of payment.
+The client is notified with the result of this procedure through an SMS, including the final fare.
+
+\section{Definition, acronyms, abbrevations}
+
+\subsection{Definition}
+
+\begin{itemize}
+\item \textbf{Guest client:} a person that is not already registered in the system or that has to log in.
+\item \textbf{Registered client:} a person who has valid access credentials to log in the system.
+\item \textbf{System administrator:} privileged user, in charge of managing administration processes and of updating business logic.
+\item \textbf{Reservation:} it is the action performed by a registered client that allow him/her to reserve an available car for maximum one hour.
+\item \textbf{Journey time = travel time:} time elapsed since the user starts the engine to the user parks the car and terminates the journey.
+\item \textbf{Available car:} a car that is not reserved by any user and has enough charge to be rented.
+\item \textbf{Unavailable car:} a car that is already reserved or damaged, so impossible to reserve.
+\item \textbf{Gps navigation:} it is the navigation system that is included in the car on board system. It could be used by the user to find direction to the final destination.
+\item \textbf{Final destination:} address where the user wants to go.
+\item \textbf{Safe area:} the region where is permitted to park and leave a car once the rent is terminated.
+\item \textbf{Power grid station:} the area where it’s allowed users to park the cars, leaving them attached to the power grid.
+\end{itemize}
+
+\subsection{Acronyms}
+
+\begin{itemize}
+\item \textbf{RASD:} Requirements Analysis and Specification Document
+\item \textbf{DD: } Design document
+\item \textbf{API:} Application Programming Interface
+\item \textbf{UI:} User Interface
+\item \textbf{MVC: } Model View Controller
+\item \textbf{URL: } Uniform Resource Locator
+\item \textbf{UXD: } User Experience Design
+\item \textbf{BCE: } Boundary Control Entity
+\item \textbf{SMS: } Short Message Service
+\item \textbf{WSS: } Web Socket Secure
+\item \textbf{HTTPS: } HyperText Transfer Protocol over Secure Socket Layer
+
+\end{itemize}
+
+\subsection{Abbrevetations}
+
+\begin{itemize}
+\item \textbf{{[Gn]}:} n-goal
+\item \textbf{{[Rn]}:} n-functional requirement
+\end{itemize}
+
+\section{Reference documents}
+
+\begin{itemize}
+\item PowerEnjoy specification document (assignment).
+\item RASD v1.1 .
+\item IEEE Std 1016tm-2009 Standard for Information Technology - System Design - Software Design Descriptions.
+\end{itemize}
+
+\section{Document overview}
+The document is substantially divided in 4 sections:
+\begin{itemize}
+\item Introduction: it provides a general description of the content of the Design Document and some additional information in order to be coherent with the RASD document, previously produced.
+\item Architecture Design: in this section there are a detailed increasing description of the components of our application, of their architecture and of their internal and external interactions.
+This section also explains the main design and architectural choices.
+\item Algorithms Design: this section contains an explanation of the main algorithms that have to be implemented in the software.
+Pieces of pseudo-code are included in order to give a clear view of those algorithms.
+\item User Interface Design: this section includes mockups and user experience explained via UX and BCE diagrams.
+\item Requirements Traceability: this section relates the decisions taken in the RASD to the design components introduced in this document.
+\end{itemize}
