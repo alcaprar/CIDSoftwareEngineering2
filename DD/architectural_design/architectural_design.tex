@@ -1,71 +1,146 @@
 \chapter{Architectural design}
 
-\section{Prodcut perspective}
-The PowerEnjoy application will consist of a mobile and a web application for clients, that offer the same functionalities, and an internal interface for the system administrator.
+\section{Overview}
+This chapter describes the different components of PowerEnjoy and how they interact with each other, starting from an high level view of the system and finally explaining in detail the sub-components.
 
-The system also relies on existing external services and their interactions will be described later in this document.
+\section{High level components and their interaction}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/high_level_view.png}
 
-\section{User characteristic}
-There are two main classes of users in our system: Clients and System Administrators.
+PowerEnjoy is composed by three main components: DBMS, web server and client application.
+These can be mapped to three tiers in a three-tiers architecture: the data tier is the DBMS, the application tier is the web server and the GUI tier is the client application.
+The client application provides the UI through which the users can access the service offered by PowerEnjoy.
 
-The System Administrators are in charge of managing administration processes and of updating business logic. These users can analyze data in order to produce reports and statistics about the quality of service.
+The UI makes requests to the web server that is in charge of elaborating those and eventually of providing a valid response.
+The client application is waiting for events from the web server and it updates the UI according to the data received.
 
-A Client is a person that wants to use this application is a person that wants to move across the city using a car without the responsibility of owning it.
+The web server, while is processing the requests, can make call to external API and query the database.
 
-\section{Constraints}
+\section{Component view}
 
-\subsection{Regulatory policies}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/component_diagram.png}
 
-The system has to manage sensible data such as email addresses and phone numbers to communicate with users, GPS tracking to locate the clients and credit cards information for payments.
-Registered Clients must agree with the privacy legislation in force in the country in which the software is used.
+The PowerEnjoy system runs a websocket server, as you can see from the high level view diagram, that receives events from the end-user applications.
 
-\subsection{Hardware policies}
-For the mobile application the system requests that the client’s device has:
+The EventRouter dispatches the requests to the appropriate Controller that elaborates the request.
+During this operation the controller can use other components of the system or can make calls to external services.
+
+The ReservationController is the main controller and is in charge of managing all the process that involves a reservation, starting from the submission of a reservation request until the end of the rent.
+It can be called by either the EventRouter or the SMSReservationManager.
+
+It uses some internal and external components in order to fulfill all the received requests:
 \begin{itemize}
-\item active internet connection;
-\item enough space in the device memory;
-\item active GPS, if the client doesn’t want to put manually the address of her/his position.
+\item it uses an external PushNotificationGateway in order to send real-time push notifications to users’ mobile app.
+\item it uses an external SMSGateway in order to send SMS notification to users’ mobile phone.
+\item it uses an external PaymentGateway in order to complete a payment after a rent is finished.
+\item it uses an external MapsAPI in order to locate users and cars into a map. In addition it uses the navigation API, that are part of the Google Maps API, in order to suggest the right journey to the user in case of ‘save money’ option.
+\item it uses the internal DiscountManager in order to calculate the discount to apply at the end of a rent.
+\item it uses the internal CarStatusManager and CarDistributionManager in order to check whether a car is available or not.
 \end{itemize}
 
-For the Web Application the system requires that the browser support at least websockets component. As a reference we use this tool:  http://caniuse.com/\#feat=websockets.
+The AccountController is in charge of the process of registration and modification of user’s profile and settings.
+It uses an external Driving licence API, provided by the ‘Motorizzazione Civile’, in order to check if a driving licence is valid or not.
 
-\subsection{Interfaces to other applications}
+The AuthController is in charge of checking the validity of the credentials during the login process.
+
+All the controllers use instances of Model in order to retrieve data from the DB.
+
+\section{Deployment view}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/deployment_diagram.png}
+
+In this section the components defined in the previous section are placed within a device.
+The following diagram explains where each component is and how  different devices communicate between them.
+
+JSON is used to encapsulate data inside a standard structure and only JSON messages are exchanged between our internal components.
+This choice makes easier the exchange of messages, even complex objects, among components built with different technologies.
+
+\section{Runtime view}
+In this section are presented some sequence diagrams that explain the interactions among components showed in Component and Deployment diagrams.
+
+\subsection{Login}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_login.png}
+
+\subsection{Reservation through mobile app}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_reservation.png}
+
+\subsection{Usage of on board application}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_onboard.png}
+
+\section{Component interfaces}
+In this section all the interfaces, previously shown in the Component Diagram, are analyzed.
+
+\subsection{UserUI interface}
+This interface provides an entry point to the system for Guest users and Registered Clients, through web/mobile application.
+
+The following list contains the main methods provided by this interface:
 \begin{itemize}
-\item Google maps: to provide to the user information about the position of the cars and how to reach them.
-\item Driving licences database: to check, during the registration step, whether a driving licence is valid or not.
-\item Payment interface service: to manage financial transactions related to PowerEnJoy service.
-\item SMS gateway provider: in order to send notifications to clients.
-\item GPS system: to locate clients.
+\item showHome()
+\item showLogin()
+\item showSingUp()
+\item showAccount()
+\item showReservationPage()
+\item showMap()
+\item showCarDetails()
+\item submitRegistration()
+\item submitLogin()
+\item submitReservation()
 \end{itemize}
 
-\subsection{Parallel operations}
-The server can handle parallel operations and requests related to different clients.
+\subsection{SystemAdminUIInterface}
+This interface provides an entry point to the system for the System Administratror.
 
-\section{Assumptions and dependencies}
+The following list contains the main methods provided by this interface:
 
-\subsection{Assumptions}
-\begin{enumerate}[label=\textbf{A\arabic*)}]
-\item The Clients can leave the rented cars only in one of the safe areas.[see Safe Area in Definitions]
-\item There isn’t an old system providing the same services.
-\item Only registered clients can use the services of PowerEnjoy.
-\item There’s no car having the same plate.
-\item Each car of PowerEnjoy is conformed to have at most 5 passengers, driver included.
-\item The client that does a reservation can take with him/her in the car at most 4 passengers.
-\item The car sharing service is operating 24 hours per day, 7 days a week, 365 days per year.
-\item The position of each car is known using the GPS signal. Each car is provided of an autonomous GPS system reachable from our service.
-\item In the cars there are sensors that provides the system information about the current number of passengers.
-\item The cars can only be parked in a safe area.
-\item A client can maintain his/her reservation of the car during a stop, parking the car temporary in a not safe area. This is allowed only if the client proclaim the intention to do that through the application. During this stop the client continues to pay with some reduction of the standard hiring cost.
-\item The external services are not affected by downtimes or unavailability.
-\item Users own skills to interact correctly with the system.
-\item Users own at least one device to use the functionalities of the system.
-\item External services provide to our system consistent and valid information.
-\end{enumerate}
-
-\subsection{Dependencies}
-
-\section{Future possible implementations}
 \begin{itemize}
-\item Extend  the system in order to manage the rent of new kind of vehicle.
-\item Extend the system to let users filter cars by selecting their desired characteristics(such as number of possible passengers, dimension of the car, minimum desired charge).
+\item showHomeAdmin()
+\item showAdminLogin()
+\item showAdminAccount()
+\item showMenu()
+\item showDataEditor()
+\item submitAdminLogin()
 \end{itemize}
+
+\subsection{OnBoardUIInterface}
+This interface provides an entry point for Guest users and Registered Clients, through the on board application.
+
+The following list contains the main methods provided by this interface:
+\begin{itemize}
+\item showEnterPinScreen()
+\item showOnBoardHome()
+\item showNavigationSystemHome()
+\item submitAddress()
+\item submitSaveMoneyOption()
+\item submitTerminateRent()
+\item submitPitStopMode()
+\item stopPitStopMode()
+\item submitPin()
+\item submitAskForHelp()
+\end{itemize}
+
+\section{Selected architectural styles and patterns}
+This section exposes the architectural decisions for the development the system of Power Enjoy and the reasons related to each choice.
+
+\subsection{Overall architecture}
+\subsubsection{Service Oriented Architecture}
+SOA fits perfectly the needs of  the system of Power Enjoy, starting from the calls to external services to the communication between the different parts of the data and business models, the involved devices and each architectural layer.
+
+\subsubsection{Client - server architecture}
+PowerEnJoy is an on-demand service usable by the client through website, smartphone app and SMS.
+The architecture that best complies with this context is the server-client one: besides all benefits of the communication between the devices, it’s the most suitable architecture also for its maintainability and scalability.
+The interfacing with different types of devices is completely horizontal to the server side, permitting an easier implementation and management of the workflow of the system.
+
+\subsection{Design patterns}
+\subsubsection{MVC}
+The Model-View-Controller paradigm is largely used in systems where a data model interacts with different clients, like PowerEnJoy: separating all components with respect to their aim permits to developers a better management of interactions between them.
+
+SOTTOLINEARE CHE LA VIEW E' NEI CLIENT E MODEL E CONTROLLER IN SERVER
+
+\subsubsection{Factory}
+Useful to define interfaces able to encapsulate the information of a hierarchy of classes.
+
+\subsubsection{Singleton}
+
+\subsubsection{Middleware}
+
+
+
+
