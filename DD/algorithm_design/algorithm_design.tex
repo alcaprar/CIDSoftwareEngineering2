@@ -1,1 +1,66 @@
 \chapter{Algorithm design}
+
+\section{getCarsListInARange}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{w: the user requesting reservation}
+\KwResult{A list of car available in a range}
+ Car[] availableCars\;
+ Position pos $\leftarrow$  w.getPosition()\;
+ \If{pos!=null}{
+ int range $\leftarrow$ w.getRange()\;
+ \ForEach{c in CarStatusManager.getCarsInRange()}{
+ \If{c.rentable()}{
+ availableCars.add(c)\;
+ }
+ }
+ }
+ return availableCars\;
+ \caption{Function getCarsListInARange}
+\end{algorithm}
+
+\section{submitReservation}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{w: the user requesting reservation\\ c: the car choosen by w}
+\KwResult{true if reservation has been performed successfully, otherwise false}
+ \eIf{!w.hasAlreadyActiveReservation()}{
+ \If{c!=null}{
+ \If{CarStatusManager.reserveCar(c)}{
+ Request r\;
+ startCountdown()\;
+ r.user $\leftarrow$ w\;
+ r.car $\leftarrow$ c\;
+ return true\;
+ }
+ }
+ }{
+ return false\;
+ }
+ \caption{Function submitReservation}
+\end{algorithm}
+
+\section{calculateDiscount}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{w: the user that used a car\\ r: the rent instance, just concluded, related to u}
+\KwResult{a percentage of the discount}
+ float discount = 0\;
+ Car c = r.getReservation().getCar()\;
+ \eIf{c.getBatteryStatus()$>$50}{
+ discount = discount + 0,20\;
+ }{
+ Position posCar = c.getPosition()\;
+ \If{APIMaps.getDistanceFromNearestSA(posCar)$>$3 and c.getBatteryStatus() $<=$ 0,20}{
+ discount = discount - 0,30\;
+ }
+ }
+ \If{c.getPeopleLastRide()$>$1}{
+ discount = discount + 0,10\;
+ }
+ \If{c.isPluggedIn()}{
+ discount = discount + 0,30
+ }
+ return discount\;
+ \caption{Function calculateDiscount}
+\end{algorithm}
