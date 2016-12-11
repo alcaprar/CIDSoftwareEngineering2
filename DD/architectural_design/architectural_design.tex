@@ -1,10 +1,13 @@
 \chapter{Architectural design}
 
 \section{Overview}
-This chapter describes the different components of PowerEnjoy and how they interact with each other, starting from an high level view of the system and finally explaining in detail the sub-components.
+This chapter describes the different components of PowerEnjoy and how they interact with each other, starting from an high level view of the system and finally explaining in details the sub-components.
 
 \section{High level components and their interaction}
+\begin{figure}[H]
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/high_level_view.png}
+\caption{High level view of PowerEnjoy}
+\end{figure}
 
 PowerEnjoy is composed by three main components: DBMS, web server and client application.
 These can be mapped to three tiers in a three-tiers architecture: the data tier is the DBMS, the application tier is the web server and the GUI tier is the client application.
@@ -17,8 +20,10 @@ The web server, while is processing the requests, can make call to external API 
 
 \section{Component view}
 
+\begin{figure}[H]
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/component_diagram.png}
-
+\caption{Component diagram}
+\end{figure}
 The PowerEnjoy system runs a websocket server, as you can see from the high level view diagram, that receives events from the end-user applications.
 
 The EventRouter dispatches the requests to the appropriate Controller that elaborates the request.
@@ -45,8 +50,10 @@ The AuthController is in charge of checking the validity of the credentials duri
 All the controllers use instances of Model in order to retrieve data from the DB.
 
 \section{Deployment view}
+\begin{figure}[H]
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/deployment_diagram.png}
-
+\caption{Deployment diagram}
+\end{figure}
 In this section the components defined in the previous section are placed within a device.
 The following diagram explains where each component is and how  different devices communicate between them.
 
@@ -57,13 +64,22 @@ This choice makes easier the exchange of messages, even complex objects, among c
 In this section are presented some sequence diagrams that explain the interactions among components showed in Component and Deployment diagrams.
 
 \subsection{Login}
+\begin{minipage}{\textwidth}
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_login.png}
+\captionof{figure}{Login sequence diagram}
+\end{minipage}
 
 \subsection{Reservation through mobile app}
+\begin{minipage}{\textwidth}
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_reservation.png}
+\captionof{figure}{Reservation sequence diagram}
+\end{minipage}
 
 \subsection{Usage of on board application}
+\begin{figure}[H]
 \includegraphics[width=\textwidth, keepaspectratio]{../images/architectural_design/rv_onboard.png}
+\caption{Usage of on board application sequence diagram}
+\end{figure}
 
 \section{Component interfaces}
 In this section all the interfaces, previously shown in the Component Diagram, are analyzed.
@@ -132,15 +148,22 @@ The interfacing with different types of devices is completely horizontal to the 
 \subsubsection{MVC}
 The Model-View-Controller paradigm is largely used in systems where a data model interacts with different clients, like PowerEnJoy: separating all components with respect to their aim permits to developers a better management of interactions between them.
 
-SOTTOLINEARE CHE LA VIEW E' NEI CLIENT E MODEL E CONTROLLER IN SERVER
-
-\subsubsection{Factory}
-Useful to define interfaces able to encapsulate the information of a hierarchy of classes.
+Furthermore it is possible to map the 3 tier architecture with the MVC. The application and data tiers represent the controller and model components while the client tier represents the view component.
 
 \subsubsection{Singleton}
+The singleton patterns restrict the number of instantiations of a class to one.
+Creating singletons in Node.js is pretty straightforward using `require`.
+It does not matter how many times you will require this module in your application; it will only exist as a single instance.
+
+\subsubsection{Callback}
+Callbacks are the essence of Node.js.
+They enable a balanced, non-blocking flow of asynchronous control across modules and applications.
+
+Node.js relies on asynchronous code to stay fast.
 
 \subsubsection{Middleware}
-
+Middlewares are the core idea of Express.js.
+The concept is poweful and simple: the output of one function is the input for the next.
 
 
 

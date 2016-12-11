@@ -1,5 +1,5 @@
 \chapter{Algorithm design}
-
+In this chapter are presented some solutions for the main critical parts of the system.
 \section{getCarsListInARange}
 \begin{algorithm}[H]
 \SetAlgoLined
@@ -45,21 +45,21 @@
 \SetAlgoLined
 \KwData{w: the user that used a car\\ r: the rent instance, just concluded, related to u}
 \KwResult{a percentage of the discount}
- float discount = 0\;
+ float discount $\leftarrow$ 0\;
  Car c = r.getReservation().getCar()\;
  \eIf{c.getBatteryStatus()$>$50}{
- discount = discount + 0,20\;
+ discount $\leftarrow$ discount + 0,20\;
  }{
  Position posCar = c.getPosition()\;
  \If{APIMaps.getDistanceFromNearestSA(posCar)$>$3 and c.getBatteryStatus() $<=$ 0,20}{
- discount = discount - 0,30\;
+ discount $\leftarrow$ discount - 0,30\;
  }
  }
  \If{c.getPeopleLastRide()$>$1}{
- discount = discount + 0,10\;
+ discount $\leftarrow$ discount + 0,10\;
  }
  \If{c.isPluggedIn()}{
- discount = discount + 0,30
+ discount $\leftarrow$ discount + 0,30
  }
  return discount\;
  \caption{Function calculateDiscount}
