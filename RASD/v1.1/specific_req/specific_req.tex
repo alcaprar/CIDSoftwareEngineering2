@@ -10,6 +10,10 @@ External Interface Required for PowerEnjoy:
 \end{itemize}
 
 \subsection{User interfaces}
+\subsubsection{Home}
+From the homepage of the application the user can decide either to do a registration or to login into the system, if he/she has already valid access credentials.
+The guest user can also have access to the sections FAQ, instructions and Contact Us.
+
 \subsubsection{Home mobile app}
 \begin{figure}[H]
 \centering
@@ -26,10 +30,12 @@ External Interface Required for PowerEnjoy:
 \end{figure}
 
 \clearpage
+\subsubsection{Reservation}
+When a Registered Client from his/her account page choose the action ‘Map View’, the system shows a screen with the map with the available cars, near him/her, if the GPS signal is active, or near the address that the Registered Client has indicated. Once chosen a car, the Registered client can decide to reserve it through the button ‘Reserve’ and visualize its details.
 \subsubsection{Reservation mobile app}
 \begin{figure}[H]
 \centering
-\includegraphics[]{../images/mookup/Reservation_mobile}
+\includegraphics[scale=0.8]{../images/mookup/Reservation_mobile}
 \caption{Reservation page of mobile app}
 \end{figure}
 
@@ -42,6 +48,8 @@ External Interface Required for PowerEnjoy:
 \end{figure}
 
 \clearpage
+\subsubsection{Account details}
+When a Registered Client is already logged in, the system shows his/her account page, from which he/she can reserve a car or manage account data and log out.
 \subsubsection{Account details mobile app}
 \begin{figure}[H]
 \centering
@@ -142,6 +150,7 @@ It also has to show a warning notice if the charge is equal to the minimum possi
 \item The system considers a user as a Registered Client if and only if he/she opens the activation link in the confirmation e-mail.
 \item The system considers a phone number valid if and only if the user inserts the code sent by the system through an SMS.
 \item The registration procedure requires the Guest Client to indicate his/her driving licence.
+\item The system checks whether the driving licence is valid or not.
 \item The system requires the Registered Client to specify one valid payment method.
 \item The system must send back to the Registered Client’s email a password that he/she can use to access the system.
 \end{enumerate}
