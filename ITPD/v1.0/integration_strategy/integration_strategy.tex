@@ -30,13 +30,13 @@ Then we test module 2 such that it calls 4 and 5 separately.
 If an error occurs we know that there is a problem in one of the modules, or in the interface between them.
 Then we test module 1 such that it calls module 3 and again if an error occurs we know that the problem is in module 3 or in the interface between module 1 and module 3.
 
-//IMMAGINE BOTTOM-UP
+\begin{minipage}{\textwidth}
+\includegraphics[width=\textwidth, keepaspectratio]{../images/bottom_up.png}
+\captionof{figure}{Bottom up strategy diagram}
+\end{minipage}
 
 \section{Sequence of Component/Function Integration}
 The bottom up strategy provides a simple workflow to test modules and makes easier the formulation and the observation of tests.
-Since the application has been developed, it is possible to run tests returning on the tree of modules, without creating fake contexts of execution to support the tests.
-
-This document wants to offer a testing plan based on a particular sequence to follow, explained in detail in the next paragraph.
 
 \subsection{Software Integration Sequence}
 The sequence of integration tests depends on the strategy used to verify the correctness of tests.

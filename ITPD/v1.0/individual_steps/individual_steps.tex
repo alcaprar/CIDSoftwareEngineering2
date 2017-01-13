@@ -1,0 +1,202 @@
+\chapter{Individual Steps and Test Description}
+\section{Integration test case I1.1}
+
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.1
+\item \textbf{Test items:} UserController, Driving licence API
+\item \textbf{Purpose:} To check the response of the Driving licence API called after the registration process.
+\item \textbf{Input specification:} The UserController receives requests from the from the Event router.
+\item \textbf{Output specification:} Driving licence valid or not.
+\item \textbf{Environmental needs:} Driving licence API stub
+\end{itemize}
+
+\section{Integration Test Case I1.2}
+\begin{itemize}
+\item \textbf{Test case identifier:}  I1.2
+\item \textbf{Test items:} UserController, NotificationManager
+\item \textbf{Purpose:} To check if the NotificationManager is properly called in different scenarios: it is called when an user submits a registration form in order to send an email containing a password and as well when an user wants to change the password  in order to send an email with the new password.
+\item \textbf{Input specification:} The UserController receives requests from the Event router.
+\item \textbf{Output specification:} Positive/negative answer about the conclusion of the operation
+\item \textbf{Environmental needs:} NotificationManager stub
+\end{itemize}
+
+\section{Integration Test Case I1.3}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.3
+\item \textbf{Test items:} AuthController, NotificationManager
+\item \textbf{Purpose:} To check if the NotificationManager is properly called when an user sends a “recover password” request in order to send an email containing the steps to recover the password.
+\item \textbf{Input specification:} The AuthController receives requests from the Event router.
+\item \textbf{Output specification:} Positive/negative answer about the conclusion of the operation
+\item \textbf{Environmental needs:} NotificationManager stub
+\end{itemize}
+
+\section{Integration Test Case I1.4}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.4
+\item \textbf{Test items:} SystemAdminController, CarDistributionManager
+\item \textbf{Purpose:} To test if the SystemAdminController calls correctly the methods of the CarDistributionManager when the System Administrator sends a request to check the distribution of the cars along the city or in a specific Safe Area.
+\item \textbf{Input specification:} The EventRouter calls the SystemAdminController component.
+\item \textbf{Output specification:} The EventRouter calls the SystemAdminController component.
+Output specification: The expected output is a positive response if the number of cars in the city is higher than the minimum acceptable (previously set) and if the car are correctly distributed along the city. In the other case the output, according to the request performed by the System Administrator, can be: a list of the plates of the cars with too low battery to be available and their positions; a list of area in which there are not many cars available and the plates of the cars; a list of area with a great number of cars and the plates of the cars.
+\item \textbf{Environmental needs:} CarDistributionManager, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I1.5}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.5
+\item \textbf{Test items:} ReservationController, NotificationManager
+\item \textbf{Purpose:} To check if the ReservationController calls correctly the methods of NotificationManager when it receives a request from the SMSReservationManager or from the Event router. The purpose of the ReservationController is to activate the NotificationManager to send communications to the client. In particular during the process of reservation when the client reserves a car through SMSs and at the end of the ride, with the recap, to the client, independently from the way in which he/she has reserved the car.
+\item \textbf{Input specification:} The ReservationController receives requests from the SMSReservationManager or from the Event router.
+\item \textbf{Output specification:} Positive/negative answer about the conclusion of the operation.
+\item \textbf{Environmental needs:} NotificationManager Stub.
+\end{itemize}
+
+\section{Integration Test Case I1.6}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.6
+\item \textbf{Test items:} ReservationController, CarDistributionManager
+\item \textbf{Purpose:} To check the communication between the ReservationController and the CarDistributionManager. The ReservationController uses the methods of the CarDistributionManager for example when the client would make a reservation and is looking for a car near his/her position or when a client enables the ‘save money’ option during a rent, in order to find out where to live the car to obtain a discount.
+\item \textbf{Input specification:} The ClientUI asks for the list of available cars, near a given position or the OnBoardUI asks where the car should be parked, near a given position, in order to maintain a fair distribution of the cars in the city and the client can get a discount.
+\item \textbf{Output specification:} List of available cars; list of Safe Area.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case
+\end{itemize}
+
+\section{Integration Test Case I1.7}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.7
+\item \textbf{Test items:} SystemAdminController, CarStatusManager
+\item \textbf{Purpose:} To test if the request of the SystemAdminController to change the state of a car on the Database is performed correctly. In particular this is done when the System Administrator choose to check or change the status of a car.
+\item \textbf{Input specification:} The SystemAdminController receives a request from the EventRouter.
+\item \textbf{Output specification:} Modification of data of the Database, positive/negative answer about the conclusion of the operation.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I1.8}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.8
+\item \textbf{Test items:} ReservationController, CarStatusManager
+\item \textbf{Purpose:} To check if the status of a car in the Database is correctly changed after a request made by the ReservationController. In particular this happens every time a car is reserved or the rent finishes.
+\item \textbf{Input specification:} We can distinguish different kind of situations:
+\begin{itemize}
+\item The client does a reservation through the application, so the ReservationController receives a request from the EventRouter.
+\item The client does a reservation through SMS so the SMSReservationManager calls the ReservationController.
+\item The client terminates his/her rent through the OnBoard application, so the ReservationController receives a request from the EventRouter.
+\item The time to reach the car for the client has expired, so the ReservationController calls the methods of the CarStatusManager to change the status of the car.
+\end{itemize}
+\item \textbf{Output specification:} Modification of data of the Database, positive/negative answer about the conclusion of the operation.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I1.9}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.9
+\item \textbf{Test items:} ReservationController, CostManager
+\item \textbf{Purpose:} To test if the ReservationController calls correctly the CostManager every time the OnBoard application sends the information about the last ride, in order to obtain the related cost.
+\item \textbf{Input specification:} The ReservationController receives a request from the EventRouter.
+\item \textbf{Output specification:} The ReservationController receives the final cost for the last ride.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I1.10}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.10
+\item \textbf{Test items:} ReservationController, Maps API
+\item \textbf{Purpose:} ReservationController uses Maps API to let the client visualize the list of available cars near his/her position in a map and to calculate the distance between the client and each car. The purpose is to test the external calls to the service.
+\item \textbf{Input specification:} ReservationController sends to MapsAPI the collection of coordinates of the available cars in order to find the shortest path, and the client’s coordinates.
+\item \textbf{Output specification:} A collection of points representing a subset of the input one ordered from the nearest point to the furthest one.
+\item \textbf{Environmental needs:} MapsAPI Stub, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I1.11}
+\begin{itemize}
+\item \textbf{Test case identifier:} I1.11
+\item \textbf{Test items:} ReservationController, Payment Gateway
+\item \textbf{Purpose:} When a rent ends, the ReservationController starts the procedure to apply the fee; the purpose is to test the correctness of the call.
+\item \textbf{Input specification:} The ReservationController sends to the PaymentGateway all the information needed to complete the transaction (client’s payment information, amount to pay).
+\item \textbf{Output specification:} Change of data in the Database of PowerEnJoy; warning that the payment failed.
+\item \textbf{Environmental needs:} PaymentGateway Stub, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I2.1}
+\begin{itemize}
+\item \textbf{Test case identifier:} I2.1
+\item \textbf{Test items:} EventRouter, UserController
+\item \textbf{Purpose:} The client can see/modify his/her data in the profile. The purpose is to test the correct interaction with the UserController and the effectiveness of changes requested by the user.
+\item \textbf{Input specification:} The EventRouter receives a request from the UserUI.
+\item \textbf{Output specification:} Change of data in the Database of PowerEnJoy; positive/negative answer about the conclusion of the operation.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I2.2}
+\begin{itemize}
+\item \textbf{Test case identifier:} I2.2
+\item \textbf{Test items:} EventRouter, AuthController
+\item \textbf{Purpose:} The purpose is to test the login process executed by a registered client or by a System Administrator, who receives the access to PowerEnJoy service if and only if he/she inserts the correct credentials.
+\item \textbf{Input specification:} The AuthController receives the client’s credentials from the EventRouter
+\item \textbf{Output specification:} The system grants the access if the credentials corresponds to the saved ones in the Database of PowerEnJoy.
+\item \textbf{Environmental needs:} Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I2.3}
+\begin{itemize}
+\item \textbf{Test case identifier:} I2.3
+\item \textbf{Test items:} EventRouter, SystemAdminController
+\item \textbf{Purpose:} To test if the communication between the EventRouter and the SystemAdminController works correctly. The EventRouter calls methods of the SystemAdminController every time the System Administrator performs a request on his application. For example when the SystemAdministrator wants to change the status of a car in the Database or when he/she has to check the distribution of the cars.
+\item \textbf{Input specification:} the EventRouter receives a request from the SystemAdminUI.
+\item \textbf{Output specification:} The expected output is a positive response if the number of cars in the city is higher than the minimum acceptable (previously set) and if the car are correctly distributed along the city. In the other case the output, according to the request performed by the System Administrator, can be: a list of the plates of the cars with too low battery to be available and their positions; a list of area in which there are not many cars available and the plates of the cars; a list of area with a great number of cars and the plates of the cars.
+\item \textbf{Environmental needs:} CarDistributionManager, CarStatusManager, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I2.4}
+\begin{itemize}
+\item \textbf{Test case identifier:} I2.4
+\item \textbf{Test items:} EventRouter, ReservationController
+\item \textbf{Purpose:} The EventRouter dispatches several events to ReservationController, that is the most important component of the system of PowerEnJoy.. The purpose is to do a test for each scenario associated to a client’s action, for example the requests may be : provide a set of car near a fixed point; reserve a selected car; cancelation of a previous reservation; start a rent; terminate a rent.
+\item \textbf{Input specification:} The EventRouter receives a request from the UserUI or from the OnBoardUI.
+\item \textbf{Output specification:} depending on the kind of request performed the output may be:
+\begin{itemize}
+\item positive/negative answer about the conclusion of the operation;
+\item set of positions of cars near the client’s position;
+\end{itemize}
+\item \textbf{Environmental needs:} NotificationManager Stub, CarDistributionManager, CostManager, CarStatusManager, MapsAPI Stub, PaymentGateway Stub, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I2.5}
+\begin{itemize}
+\item \textbf{Test case identifier:} I2.5
+\item \textbf{Test items:} SMSReservationManager, ReservationController
+\item \textbf{Purpose:} To check if the ReservationController is properly called from the SMSReservationManager when a client makes a reservation through an SMS. The SMSReservationManager calls the ReservationController: when the client expresses his/her intention to rent a car, when a client decides to cancel his/her previous request of reservation, when the client asks to unlock the rented car.
+\item \textbf{Input specification:} The SMSReservationManager receives a request from the SMSGateway.
+\item \textbf{Output specification:} positive/negative answer about the conclusion of the operation.
+\item \textbf{Environmental needs:} SMSReservationManager Stub NotificationManager Stub, CarDistributionManager, CostManager, CarStatusManager, PaymentGateway Stub, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I3.1}
+\begin{itemize}
+\item \textbf{Test case identifier:} I3.1
+\item \textbf{Test items:} OnBoardUI, EventRouter
+\item \textbf{Purpose:} To test the communication between the OnBoardUI and the EventRouter. The OnBoardUI calls the EventRouter every time the client does an action on the OnBoard application. Some actions may be for example: the insertion of the pin code, the choice to terminate the rent, to enable the ‘save money’ option or to choose the ‘Pit Stop Mode’.
+\item \textbf{Input specification:} Actions performed by the client on the interface of the on board application.
+\item \textbf{Output specification:} Push notification on the interface, containing the positive/negative result of the operation.
+\item \textbf{Environmental needs:} AuthController, ReservationController, CarDistributionManager, CarStatusManager, CostManager, MapsAPI Stub, PaymentGateway Stub.
+\end{itemize}
+
+\section{Integration Test Case I3.2}
+\begin{itemize}
+\item \textbf{Test case identifier:} I3.2
+\item \textbf{Test items:} SystemAdminUI, EventRouter
+\item \textbf{Purpose:} To test if the SystemAdminUI calls correctly the EventRouter every time the System Administrator makes a request through his/her application. Some of these requests are for example login/logout, changing the status of a car in the Database or checking the distribution of the cars.
+\item \textbf{Input specification:} Actions performed by the System Administrator on the interface of his/her web application.
+\item \textbf{Output specification:} The expected output is a positive response if the number of cars in the city is higher than the minimum acceptable (previously set) and if the car are correctly distributed along the city. In the other case the output, according to the request performed by the System Administrator, can be: a list of the plates of the cars with too low battery to be available and their positions; a list of area in which there are not many cars available and the plates of the cars; a list of area with a great number of cars and the plates of the cars.
+\item \textbf{Environmental needs:} SystemAdminController, AuthController, CarDistributionManager, CarStatusManager, Test Database filled with data concerning the specific Test Case.
+\end{itemize}
+
+\section{Integration Test Case I3.3}
+\begin{itemize}
+\item \textbf{Test case identifier:} I3.3
+\item \textbf{Test items:} UserUI, EventRouter
+\item \textbf{Purpose:} To test the communication between the UserUI and the EventRouter every time the UserUI needs to call the EventRouter. This happens every time a client does an action on his/her interface of the application. Some of these actions are: registration, login/logout, change the information of the account, make/cancel a reservation.
+\item \textbf{Input specification:} Actions performed by the client on the interface of his/her web or mobile application.
+\item \textbf{Output specification:} notification on the interface of the web/mobile application as result of the request performed.
+\item \textbf{Environmental needs:} UserController, AuthController, ReservationController, DrivingLincenceAPI Stub, NotificationManager Stub, CarDistributionManager, CarStatusManager, CostManager, MapsAPI Stub, PaymentGateway Stub.
+\end{itemize}

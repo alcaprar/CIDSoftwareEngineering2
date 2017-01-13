@@ -1,0 +1,17 @@
+\chapter{Tools and Test Equipment Required}
+This section describes tools and techniques required in order to do all tests listed in the previous sections.
+
+\section{Tools}
+\begin{itemize}
+\item \textbf{Mocha.js:} it’s a JavaScript test framework running on NodeJS, featuring browser support, asynchronous testing, test coverage reports, and use of any assertion library. The NodeJS concurrency model makes writing integration tests simple using this test framework. The key idea is that mocha tests can start and stop a NodeJS server. Once your mocha tests start a server, the same process can start a  client to send requests to NodeJS server without any need of messy multithreading.
+\item \textbf{Sinon.js:} it’s a standalone test spies, stubs and mocks for JavaScript. No dependencies are required and works perfectly with Mocha.js.
+\item \textbf{Chai.js:} it’s an assertion library , a tool to verify that things are correct. This makes it a lot easier to test the code, so you don't have to do thousands of if statements.
+\item \textbf{Nightwatch.js:} It’s an easy to use End-to-End testing tool for browser-based apps. This is useful to automate tests of web GUIs.
+\item \textbf{Calabash} it’s a cross-platform, supporting native Android and Ios apps, testing framework to automate tests of mobile app GUIs.
+\item \textbf{Manual testing:} some components of the system, like GUIs, are difficult to test programmatically and need manual testing. Nightwatch and Calabash are good during the development process, in order to detect in early stages bugs in user interfaces. Before deploying to the production environment a human test is mandatory in order to have feedbacks and possible improvements of the user experience.
+\end{itemize}
+
+\section{Testing environment}
+Tests are going to be executed in a particular environment physically different from the production one: the aim is to test each functionality and its correctness and, in future releases, to verify that no regressions have  risen up.
+For this reason the testing environment has to be as much as possible similar to the production one from the point of view of data, in order to recreate the most realistic situations.
+Stubs must be implemented considering different scenarios, providing all possible results of the functions involved into processes of the analysis: in other words, stubs must provide all the inputs/outputs accepted by the domain of PowerEnJoy.
