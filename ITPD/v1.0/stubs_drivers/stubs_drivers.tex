@@ -5,57 +5,63 @@
 \subsection{Driving licence API}
 \begin{itemize}
 \item \textbf{Test involved:} I1.1,I3.3
-\item \textbf{Description:}
+\item \textbf{Description:} It provides the validity of a driving licence inserted by client in PowerEnJoy System
 \end{itemize}
 
 \subsection{NotificationManager}
 \begin{itemize}
 \item \textbf{Test involved:} I1.2, I1.3, I1.5, I2.4, I3.3
-\item \textbf{Description:}
+\item \textbf{Description:} Returns the confirmation about the data transmission of the notification(s)
 \end{itemize}
 
 \subsection{Maps API}
 \begin{itemize}
 \item \textbf{Test involved:} I1.10, I2.4, I3.1, I3.3
-\item \textbf{Description:}
+\item \textbf{Description:} It provides data about distances, locations, shortest path about a set given in input
 \end{itemize}
 
 \subsection{Payment Gateway}
 \begin{itemize}
 \item \textbf{Test involved:} I1.11, I2.4, I2.5, I3.1, I3.3
-\item \textbf{Description:}
+\item \textbf{Description:} It returns the result of the payment procedure
 \end{itemize}
 
 \section{Program Drivers}
 
 \subsection{OnBoard UI}
 \begin{itemize}
-\item \textbf{Test involved:}
-\item \textbf{Description:}
+\item \textbf{Test involved:} I2.4, I3.1
+\item \textbf{Description:} It provides data about all the possible requests that a client can do during a rent, since the beginning and It also provides data about the ride
 \end{itemize}
 
 \subsection{SystemAdmin UI}
 \begin{itemize}
-\item \textbf{Test involved:}
-\item \textbf{Description:}
+\item \textbf{Test involved:} I2.2, I2.3, I3.2
+\item \textbf{Description:} It simulates the system administrator’s actions
 \end{itemize}
 
-\subsection{UserUI UI}
+\subsection{ClientUI}
 \begin{itemize}
-\item \textbf{Test involved:}
-\item \textbf{Description:}
+\item \textbf{Test involved:} I3.3
+\item \textbf{Description:} It simulates the client’s actions
 \end{itemize}
 
 \subsection{EventRouter}
 \begin{itemize}
-\item \textbf{Test involved:}
-\item \textbf{Description:}
+\item \textbf{Test involved:} I1.1, I1.2, I1.3, I1.4, I1.5, I1.6, I1.7, I1.8, I1.9
+\item \textbf{Description:} Depending on the test involved, the driver provides the correct message to the target controller
+\end{itemize}
+
+\subsection{SMSGateway Driver}
+\begin{itemize}
+\item \textbf{Test involved:} I2.5
+\item \textbf{Description:} It simulates the receiving of SMSs from the client
 \end{itemize}
 
 \subsection{SMSReservationManager}
 \begin{itemize}
-\item \textbf{Test involved:}
-\item \textbf{Description:}
+\item \textbf{Test involved:} I1.8
+\item \textbf{Description:} It provides the essential data in order to finalize a reservation
 \end{itemize}
 
 \section{Test Data Required}
