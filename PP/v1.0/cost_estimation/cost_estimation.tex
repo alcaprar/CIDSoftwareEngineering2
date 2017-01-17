@@ -1,0 +1,73 @@
+\chapter{Cost estimation}
+
+\section{Function point}
+
+\subsection{Brief introduction}
+The Function Point estimation approach is based on the principle of extracting functions from a software, to classify them using a well defined set of classes and estimating their complexity.
+
+This kind of estimation is extremely useful since it can be done at a very early stage of a project life-cycle, ideally after the implementation of the RASD.
+
+This estimation is a single number called UFP that can be computed using a simple formula.
+
+A high-level procedure that explains how to calculate this number is the following:
+
+\begin{enumerate}
+\item Classify each function of the software to one of these five possible classes called Function Types (explained in detail later):
+\begin{itemize}
+\item Internal logic files
+\item External logic interfaces files
+\item External Inputs
+\item External outputs
+\item External inquiries
+\end{itemize}
+\item For each function a complexity is defined, and it can be:
+\begin{itemize}
+\item Low
+\item Average
+\item High
+\end{itemize}
+The choice of the complexity is based on the analysis of the quantity of data processed by each function and takes into account also the type of interaction required between different components.
+\item Calculate the UFP using the formula:
+\[ \sum_{f\in F, c\in C} ((\sharp \text{ of function of type } f \text{ and complexity }c)*(\sharp \text{ weight for type } f \text{ and complexity }c)) \]
+where F={ILF, ELF, EI, EO, EIQ} and C={Low, Average, High}. \\
+Refer to this table to determine the proper weight for each type and complexity:
+\begin{table}[!h]
+\centering
+\caption{UFP Complexity Weights}
+\label{ufp-complex}
+\begin{tabular}{cccc}
+\hline
+Function type             & Low & Average & High \\ \hline
+Internal Logic files      & 7   & 10      & 15 \\
+External Interfaces files & 5   & 7       & 10 \\
+External Inputs           & 3   & 4       & 6  \\
+External Ouputs           & 4   & 5       & 7  \\
+External Inquiries        & 3   & 4       & 6  \\ \hline
+\end{tabular}
+\end{table}
+\end{enumerate}
+
+Further manipulation of the UFP can be done in order to use it in Cost Estimation Models such as COCOMO, but this will be explained later.
+
+\subsection{Internal Logic Files}
+The application manages a database which is used to store different kind of entities, each one of them has its own data structure.
+
+These entities are: registered Client, system administrator, car, safe area, reservation/request, rent, transaction.
+
+\begin{table}[!h]
+\centering
+\caption{ILF recap}
+\label{itl}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+ILF                       & Complexity & FP \\ \hline
+Registered client         & Low        & 7 \\
+System administrator      & Low        & 7   \\
+Car                       & Low        & 7  \\
+Safe area                 & Average    & 10  \\
+Reservation/Request       & High       & 15   \\
+Rent                      & Average    & 10 \\
+Transaction               & Average    & 10 \\ \hline
+\textbf{Total:}           &            & \textbf{66}
+\end{tabularx}
+\end{table}
