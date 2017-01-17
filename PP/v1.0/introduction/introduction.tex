@@ -1,0 +1,88 @@
+\chapter{Introduction}
+
+\section{Revision history}
+\begin{table}[!h]
+\centering
+\caption{Revision history}
+\label{my-label}
+\begin{tabular}{|c|c|}
+\hline
+Version & Date       \\ \hline
+v1.0    & 22/01/2017 \\ \hline
+\end{tabular}
+\end{table}
+
+\section{Purpose}
+This document represents the Project Plan for the development of the application of Power EnJoy. The aim of this document is to define the approach and the schedule of the project, in order to give a guideline to follow to the project team.
+The decisions taken in this document take in account the requests from both the stakeholders and the development team.
+
+\section{Scope}
+The aim of the project PowerEnjoy is to provide an automated service of car sharing.
+After a registration, a client can hire a car near him/her through the web or mobile application and he/she can enjoy of all the extra services offered.
+The exact position of the client is determined by the GPS signal of the client’s device or it’s allowed to manually insert a specific address.
+So the system displays all the available cars in the client’s close area.
+Then the client could make a reservation of a car, after which the system notifies the client with a message of confirmation with the car identifier.
+If the reservation procedure successfully ends the chosen car won’t be available anymore for other clients.
+Moreover a client cannot hire more than one car at the same time.
+After the reservation the client has at most one hour to reach the car, when this time expires the system gives a penalty to the client and the car, previously hired, is available again for other clients.
+The system allows the client to cancel his/her reservation.
+When the client reaches the car, he/she can tell the system that is nearby through a specific button in the application and he/she starts to pay as soon as the engine ignites.
+During the travel the system supervises the current charge of the car and notifies it to the client through a screen located in the car.
+The system stops charging the amount of money that the client has to pay when he/she communicates through the application his/her decision to stop the rent.
+When the car is parked in a safe area and the client exits, the system locks the car automatically and starts the procedure of payment.
+The client is notified with the result of this procedure through an SMS, including the final fare.
+
+
+\section{Definition, acronyms, abbrevations}
+
+\subsection{Definition}
+
+\begin{itemize}
+\item \textbf{Guest client:} a person that is not already registered in the system or that has to log in.
+\item \textbf{Registered client:} a person who has valid access credentials to log in the system.
+\item \textbf{System administrator:} privileged user, in charge of managing administration processes and of updating business logic.
+\item \textbf{Reservation:} it is the action performed by a registered client that allow him/her to reserve an available car for maximum one hour.
+\item \textbf{Journey time = travel time:} time elapsed since the user starts the engine to the user parks the car and terminates the journey.
+\item \textbf{Available car:} a car that is not reserved by any user and has enough charge to be rented.
+\item \textbf{Unavailable car:} a car that is already reserved or damaged, so impossible to reserve.
+\item \textbf{Gps navigation:} it is the navigation system that is included in the car on board system. It could be used by the user to find direction to the final destination.
+\item \textbf{Final destination:} address where the user wants to go.
+\item \textbf{Safe area:} the region where is permitted to park and leave a car once the rent is terminated.
+\item \textbf{Power grid station:} the area where it’s allowed users to park the cars, leaving them attached to the power grid.
+\end{itemize}
+
+\subsection{Acronyms}
+
+\begin{itemize}
+\item \textbf{ITP:} Integration Test Plan
+\item \textbf{DD:} Design Document
+\item \textbf{RASD:} Requirements Analysis and Specification Document
+\item \textbf{API:} Application Programming Interface
+\item \textbf{UI:} User Interface
+\item \textbf{DBMS:} Data Base management system
+\item \textbf{COCOMO:} COnstructive COst MOdel
+\item \textbf{SF:} Scale Factor
+\item \textbf{UFP:} Unadjusted Function Point
+\end{itemize}
+
+\subsection{Abbrevetations}
+
+\section{Reference documents}
+
+\begin{itemize}
+\item RASD v1.1
+\item DD v1.0
+\item ITPD v1.0
+\item PowerEnjoy specification document (assignment).
+\item IEEE Std 1016tm-2009 Standard for Information Technology - System Design - Software Design Descriptions.
+\end{itemize}
+
+\section{Document overview}
+The ITP is composed of five sections:
+\begin{itemize}
+\item Introduction: this section defines the goal of the document and the main characteristics of the project of PowerEnJoy.
+\item Cost estimation: in this second part there is the cost estimation of the project, done with two different methods: Function Points and COCOMO II. In order to give a greater understanding of the subject, there is also a brief introduction to both the methods used.
+\item Project Tasks and Schedule: in this section i’s provided a schedule of the different phases of the project.
+\item Resources and Tasks allocation: the fourth section contains the allocation of the resources and the tasks among the components of the team.
+\item Project Risks: this last section describes the possible risks the project may be exposed to, distinguished by type.
+\end{itemize}
