@@ -49,6 +49,7 @@ External Inquiries        & 3   & 4       & 6  \\ \hline
 
 Further manipulation of the UFP can be done in order to use it in Cost Estimation Models such as COCOMO, but this will be explained later.
 
+\clearpage
 \subsection{Internal Logic Files}
 The application manages a database which is used to store different kind of entities, each one of them has its own data structure.
 
@@ -57,10 +58,10 @@ These entities are: registered Client, system administrator, car, safe area, res
 \begin{table}[!h]
 \centering
 \caption{ILF recap}
-\label{itl}
+\label{itl-recap}
 \begin{tabularx}{\linewidth}{XXc}
 \hline
-ILF                       & Complexity & FP \\ \hline
+\textbf{ILF}                       & \textbf{Complexity} & \textbf{FP} \\ \hline
 Registered client         & Low        & 7 \\
 System administrator      & Low        & 7   \\
 Car                       & Low        & 7  \\
@@ -69,5 +70,107 @@ Reservation/Request       & High       & 15   \\
 Rent                      & Average    & 10 \\
 Transaction               & Average    & 10 \\ \hline
 \textbf{Total:}           &            & \textbf{66}
+\end{tabularx}
+\end{table}
+
+\subsection{External interface files}
+The application of Power EnJoy must interact with some external services in order to fulfill its main goals.
+
+The external services are about: driving License, maps, payment gateway, SMS gateway, push notification gateway, customer support.
+
+\begin{table}[!h]
+\centering
+\caption{EIF recap}
+\label{etl-recap}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+\textbf{ELF}                       & \textbf{Complexity} & \textbf{FP} \\ \hline
+Driving License           & Low        & 5 \\
+Maps                      & High       & 10   \\
+Payment gateway           & Average    & 7  \\
+SMS gateway               & Low        & 5 \\
+Push notification gateay  & Low        & 5 \\
+Customer support          & Low        & 5 \\ \hline
+\textbf{Total:}           &            & \textbf{37}
+\end{tabularx}
+\end{table}
+
+
+\subsection{External Inputs }
+The application has to handle external interactions due to the Registered Client’s actions or to the System Administrator’s actions.
+
+These external interactions are: registration, login, logout, modify profile, make a reservation, choose a destination, terminate a rent, manage cars (System Administrator).
+
+\begin{table}[!h]
+\centering
+\caption{EI recap}
+\label{ei-recap}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+\textbf{EI}                        & \textbf{Complexity} & \textbf{FP} \\ \hline
+Registration              & Low        & 3  \\
+Login                     & Low        & 3  \\
+Logout                    & Low        & 3 \\
+Modify profile            & Low        & 3  \\
+Make a reservation        & High       & 6 \\
+Chose a destination       & Average    & 4 \\
+Terminate a rent          & High       & 6 \\
+Cancel a reservation      & High       & 6 \\
+Manage cars (SystemAdmin) & Average    & 4 \\ \hline
+\textbf{Total:}           &            & \textbf{38}
+\end{tabularx}
+\end{table}
+
+\subsection{External Outputs}
+The application generates the following outputs, result of an internal computation on some data, to the Registered Client or to the System Administrator:
+
+\begin{table}[!h]
+\centering
+\caption{EO recap}
+\label{eo-recap}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+\textbf{EO}                                      & \textbf{Complexity} & \textbf{FP}     \\ \hline
+Best destination for getting a discount & High       & 7 \\
+List of available cars                  & Low        & 4 \\
+Notifications                           & Low        & 4 \\ \hline
+\textbf{Total:}                         &            & \textbf{38}
+\end{tabularx}
+\end{table}
+
+\subsection{External Inquiries}
+The application generates the following outputs to the Registered Client or to the System Administrator:
+
+\begin{table}[!h]
+\centering
+\caption{EInq recap}
+\label{einq-recap}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+\textbf{EInq}                                    & \textbf{Complexity} & \textbf{FP} \\ \hline
+Show Registered Client profile          & Low        & 3 \\
+Show System Administrator profile       & Low        & 3 \\
+Show history of past rents              & Low        & 3 \\
+Show current cost, charge and maps through the OnBoard application & Average & 4 \\ \hline
+\textbf{Total:}                         &            & \textbf{14}
+\end{tabularx}
+\end{table}
+
+\subsection{Recap}
+The following table summarizes the amount of FP for each type and the overall sum that corresponds to the ﬁnal UFP value.
+
+\begin{table}[!h]
+\centering
+\caption{EInq recap}
+\label{einq-recap}
+\begin{tabularx}{\linewidth}{XXc}
+\hline
+\textbf{Function type}            & \textbf{Value}      \\ \hline
+Internal logic files       & 66 \\
+External interfaces files  & 37 \\
+External inputs            & 38 \\
+External outputs           & 15 \\
+External inquiries         & 13
+\textbf{Total:}            & \textbf{169}
 \end{tabularx}
 \end{table}
