@@ -1,1 +1,62 @@
 \chapter{Functional roles}
+\section{EbayStoreCategoryFacade.java}
+This class is implemented by means of the Facade pattern.
+As the name suggests this pattern is used to create an architectural Facade.
+In fact \method{EbayStoreCategoryFacade} has the scope of providing a simple interface for a larger and more complex portion of code
+
+This class is used by the following class:
+\begin{itemize}
+\item \method{EbayEvents}
+\item \method{EbayStoreHelper}
+\item \method{EbayStoreOptions}
+\end{itemize}
+
+\section{ControllerViewArtifactInfo.java}
+
+This class is a subclass of \method{ArtifactInfoBase} so it inherits all the field and methods of it.
+The inherited methods are:
+\begin{lstlisting}[numbers=none, caption={Inherited methods by ControllerViewArtifactInfo.java}]
+@Override
+public String getDisplayName() {...}
+
+@Override
+public String getDisplayType() {...}
+
+@Override
+public String getType() {...}
+
+@Override
+public String getUniqueId() {...}
+
+@Override
+public URL getLocationURL() throws MalformedURLException {...}
+
+@Override
+public boolean equals(Object obj) {...}
+\end{lstlisting}
+
+\method{ControllerViewArtifactInfo} also has other methods, in addition to those inherited by \method{ArtifactInfoBase}.
+These methods are:
+\begin{lstlisting}[numbers=none, caption={Other methods of ControllerViewArtifactInfo.java}]
+public ControllerViewArtifactInfo(URL controllerXmlUrl, String viewUri, ArtifactInfoFactory aif) throws GeneralException {...}
+
+public URL getControllerXmlUrl() {...}
+
+public String getViewUri() {...}
+
+public Set<ControllerRequestArtifactInfo> getRequestsThatThisViewIsResponseTo() {...}
+
+public ScreenWidgetArtifactInfo getScreenCalledByThisView() {...}
+\end{lstlisting}
+
+An Artifact is a product of a software development process.
+
+In this case \method{ControllerViewArtifactInfo} is a subclass of the Artifact class \method{ArtifactInfoBase}.
+As it’s possible to notice from its methods listed above, the only actions that \method{ControllerViewArtifactInfo} makes available are those of finding information about a Controller View class type.
+
+This class is used by the following classes:
+\begin{itemize}
+\item \method{ArtifactInfoFactory}
+\item \method{ControllerRequestArtifactInfo}
+\item \method{ScreenWidgetArtifactInfo}
+\end{itemize}
