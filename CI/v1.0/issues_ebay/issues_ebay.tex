@@ -1,0 +1,804 @@
+\chapter{Issues related to EbayStoreCategoryFacade class}
+
+\section{Naming conventions}
+\subsection{Wrong naming conventions}
+The class attribute \method{module} is declared at line 58 as static final and therefore its name should be in uppercase.
+\begin{lstlisting}[firstnumber=58, caption={Issue}]
+public static final String module = EbayStoreCategoryFacade.class.getName();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=58, caption={Possible solution}]
+public static final String Module = EbayStoreCategoryFacade.class.getName();
+\end{lstlisting}
+The method \method{AttributesEnabled()} at line 330, should start with a lower case character in order to match the camel cased pattern.
+\begin{lstlisting}[firstnumber=330, caption={Issue}]
+public boolean AttributesEnabled() {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=36, caption={Possible solution}]
+public boolean attributesEnabled() {...}
+\end{lstlisting}
+
+\section{Braces}
+\subsection{Curly braces missing}
+The following \method{if} blocks should have curly braces to surround the only one statement.
+\begin{lstlisting}[firstnumber=105, caption={Issue}]
+if (recommendationsArray == null || recommendationsArray.length == 0)
+	return;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=105, caption={Possible solution}]
+if (recommendationsArray == null || recommendationsArray.length == 0){
+    return;
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=271, caption={Issue}]
+if (theme != null) temGroup.put("TemplateGroupName", theme.getGroupName());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=271, caption={Possible solution}]
+if (theme != null) {
+	temGroup.put("TemplateGroupName", theme.getGroupName());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=274, caption={Issue}]
+if (theme != null) temGroup.put("TemplateGroupName", "_NA_");
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=274, caption={Possible solution}]
+if (theme != null) {
+	temGroup.put("TemplateGroupName", "_NA_");
+}
+\end{lstlisting}
+
+
+\section{File organization}
+
+\subsection{Lines length more than 80 characters}
+The following lines exceed 80 characters but are still acceptable:
+
+\begin{lstlisting}[firstnumber=71, caption={Line 71 acceptable violation of the rule}]
+private StoreOwnerExtendedListingDurationsType storeOwnerExtendedListingDuration = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=93, caption={Line 93 acceptable violation of the rule}]
+AttributeSet[] itemSpecAttrSets = attrMaster.getItemSpecificAttributeSetsForCategories(ids);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=94, caption={Line 94 acceptable violation of the rule}]
+AttributeSet[] siteWideAttrSets = attrMaster.getSiteWideAttributeSetsForCategories(ids);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=100, caption={Line 100 acceptable violation of the rule}]
+GetCategorySpecificsCall getCatSpe = new GetCategorySpecificsCall(apiContext);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=102, caption={Line 102 acceptable violation of the rule}]
+DetailLevelCodeType[] detailLevels = new DetailLevelCodeType[] {DetailLevelCodeType.RETURN ALL};
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=104, caption={Line 104 acceptable violation of the rule}]
+RecommendationsType[] recommendationsArray = getCatSpe.getCategorySpecifics();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=115, caption={Line 115acceptable violation of the rule}]
+SiteDefaultsType siteDefaults = this.siteFacade. getSiteFeatureDefaultMap().get(apiContext.getSite());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=130, caption={Line 130 acceptable violation of the rule}]
+ListingDurationDefinitionsType listDuration = featureDefinition.getListingDurations();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=131, caption={Line 131 acceptable violation of the rule}]
+ListingDurationDefinitionType[] durationArray = listDuration.getListingDuration();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=134, caption={Line 134 acceptable violation of the rule}]
+listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=144, caption={Line 144 acceptable violation of the rule}]
+listingDurationReferenceMap.put(listingDuration[i].getType().value(), listingDuration[i].getValue());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=156, caption={Line 156 acceptable violation of the rule}]
+storeOwnerExtendedListingDuration = siteDefaults.getStoreOwnerExtendedListingDurations();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=162, caption={Line 162 acceptable violation of the rule}]
+private static BuyerPaymentMethodCodeType[] fiterPaymentMethod(BuyerPaymentMethodCodeType[] paymentMethods) {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=163, caption={Line 163 acceptable violation of the rule}]
+List<BuyerPaymentMethodCodeType> al = new ArrayList<BuyerPaymentMethodCodeType>();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=203, caption={Line 203 acceptable violation of the rule}]
+// invoke the method specified by methodName and return the corresponding return value
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=208, caption={Line 208 acceptable violation of the rule}]
+private Object invokeMethodByName(CategoryFeatureType cf, String methodName) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=224, caption={Line 224 acceptable violation of the rule}]
+List<Map<String,Object>> temGroupList = new LinkedList<Map<String,Object>>();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=226, caption={Line 226 acceptable violation of the rule}]
+GetDescriptionTemplatesCall call = new GetDescriptionTemplatesCall(this.apiContext);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=231, caption={Line 231 acceptable violation of the rule}]
+DescriptionTemplateType[] descriptionTemplateTypeList = resp.getDescriptionTemplate();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=232, caption={Line 232 acceptable violation of the rule}]
+Debug.logInfo("layout of category "+ this.catId +":"+ resp.getLayoutTotal(), module);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=233, caption={Line 233 acceptable violation of the rule}]
+for (DescriptionTemplateType descTemplateType : descriptionTemplateTypeList) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=236, caption={Line 236 acceptable violation of the rule}]
+if ("THEME".equals(String.valueOf(descTemplateType.getType()))) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=238, caption={Line 238 acceptable violation of the rule}]
+template.put("TemplateId", String.valueOf(descTemplateType.getID()));
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=239, caption={Line 239 acceptable violation of the rule}]
+template.put("TemplateImageURL", descTemplateType.getImageURL());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=245, caption={Line 245 acceptable violation of the rule}]
+if (temGroup.get("TemplateGroupId"). equals(descTemplateType.getGroupID().toString())) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=253, caption={Line 253 acceptable violation of the rule}]
+templateGroup.put("TemplateGroupId", descTemplateType.getGroupID().toString());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=259, caption={Line 259 acceptable violation of the rule}]
+templateList = UtilGenerics.checkList(templateGroup.get("Templates"));
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=263, caption={Line 263 acceptable violation of the rule}]
+else if ("Layout".equals(String.valueOf(descTemplateType.getType()))) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=270, caption={Line 270 acceptable violation of the rule}]
+if (theme.getGroupID() == Integer.parseInt(temGroup.get("TemplateGroupId").toString())) {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=334, caption={Line 334 acceptable violation of the rule}]
+public StoreOwnerExtendedListingDurationsType getStoreOwnerExtendedListingDuration() {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+The following lines exceed 80 characters and may be reformatted in a better way:
+\begin{lstlisting}[firstnumber=99, caption={Line 99 violation of the rule}]
+private void syncNameRecommendationTypes() throws ApiException, SdkException, Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=99, caption={Line 99 possible solution}]
+private void syncNameRecommendationTypes()
+	throws ApiException, SdkException, Exception {...}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=181, caption={Line 181 violation of the rule}]
+private Object getInheritProperty(String catId,String methodName,
+            Map<String, CategoryType> categoriesCacheMap, Map<String, CategoryFeatureType> cfsMap) throws Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=181, caption={Line 181 possible solution}]
+private Object getInheritProperty(String catId,
+        String methodName,
+        Map<String, CategoryType> categoriesCacheMap,
+        Map<String, CategoryFeatureType> cfsMap)
+    throws Exception {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=199, caption={Line 199 violation of the rule}]
+return getInheritProperty(cat.getCategoryParentID(0), methodName, categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=199, caption={Line 199 possible solution}]
+return getInheritProperty ( cat.getCategoryParentID(0),
+    methodName,
+    categoriesCacheMap,
+    cfsMap);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=221, caption={Line 221 violation of the rule}]
+public List<Map<String,Object>> syncAdItemTemplates() throws ApiException, SdkSoapException, SdkException {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=221, caption={Line 221 possible solution}]
+public List<Map<String,Object>> syncAdItemTemplates()
+	throws ApiException, SdkSoapException, SdkException {
+\end{lstlisting}
+
+
+
+
+\subsection{Lines length more than 120 characters}
+The following lines exceed 120 characters and must be reformatted in a better way:
+\begin{lstlisting}[firstnumber=75, caption={Line 75 violation of the rule}]
+public EbayStoreCategoryFacade(String catId, ApiContext apiContext, IAttributesMaster attrMaster, EbayStoreSiteFacade siteFacade) throws SdkException, Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=75, caption={Line 75 possible solution}]
+public EbayStoreCategoryFacade(String catId,
+        ApiContext apiContext,
+        IAttributesMaster attrMaster,
+        EbayStoreSiteFacade siteFacade)
+    throws SdkException, Exception {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=112, caption={Line 112 violation of the rule}]
+Map<String, CategoryType> categoriesCacheMap = this.siteFacade.getSiteCategoriesMap().get(apiContext.getSite());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=95, caption={Line 95 violation of the rule}]
+AttributeSet[] joinedAttrSets = attrMaster.joinItemSpecificAndSiteWideAttributeSets(itemSpecAttrSets, siteWideAttrSets);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=114, caption={Line 114 violation of the rule}]
+Map<String, CategoryFeatureType> cfsMap = this.siteFacade.getSiteCategoriesFeaturesMap().get(apiContext.getSite());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=116, caption={Line 116 violation of the rule}]
+FeatureDefinitionsType featureDefinition = this.siteFacade.getSiteFeatureDefinitionsMap().get(apiContext.getSite());
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=119, caption={Line 119 violation of the rule}]
+itemSpecificEnabled = (ItemSpecificsEnabledCodeType)getInheritProperty(catId, "getItemSpecificsEnabled", categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=119, caption={Line 119 possible solution}]
+itemSpecificEnabled = (ItemSpecificsEnabledCodeType)getInheritProperty(catId,
+        "getItemSpecificsEnabled",
+        categoriesCacheMap,
+        cfsMap);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=124, caption={Line 124 violation of the rule}]
+retPolicyEnabled = (Boolean)getInheritProperty(catId, "isReturnPolicyEnabled", categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=124, caption={Line 124 possible solution}]
+retPolicyEnabled = (Boolean)getInheritProperty(catId,
+        "isReturnPolicyEnabled",
+        categoriesCacheMap,
+        cfsMap);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=138, caption={Line 138 violation of the rule}]
+ListingDurationReferenceType[] listingDuration = (ListingDurationReferenceType[])getInheritProperty(catId, "getListingDuration", categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=138, caption={Line 138 possible solution}]
+ListingDurationReferenceType[] listingDuration = (ListingDurationReferenceType[])getInheritProperty(catId,
+        "getListingDuration",
+        categoriesCacheMap,
+        cfsMap);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=138, caption={Line 138 violation of the rule}]
+paymentMethods = (BuyerPaymentMethodCodeType[])getInheritProperty(catId, "getPaymentMethod", categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=138, caption={Line 138 possible solution}]
+paymentMethods = (BuyerPaymentMethodCodeType[])getInheritProperty(catId,
+        "getPaymentMethod",
+        categoriesCacheMap,
+        cfsMap);
+\end{lstlisting}
+
+
+\subsection{Useless blank lines to remove}
+The following blank lines are not useful to separate declarations of variables:
+\begin{lstlisting}[firstnumber=63, caption={Lines 63 violation of the rule}]
+private EbayStoreSiteFacade siteFacade = null;
+
+private AttributeSet[] joinedAttrSets = null;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=113, caption={Lines 113 violation of the rule}]
+Map<String, CategoryType> categoriesCacheMap = this.siteFacade.getSiteCategoriesMap().get(apiContext.getSite());
+
+Map<String, CategoryFeatureType> cfsMap = this.siteFacade.getSiteCategoriesFeaturesMap().get(apiContext.getSite());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=155, caption={Lines 155 violation of the rule}]
+paymentMethods = fiterPaymentMethod(paymentMethods);
+
+storeOwnerExtendedListingDuration = siteDefaults.getStoreOwnerExtendedListingDurations();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=155, caption={Lines 155 violation of the rule}]
+storeOwnerExtendedListingDuration = siteDefaults.getStoreOwnerExtendedListingDurations();
+
+bestOfferEnabled = featureDefinition.getBestOfferEnabled();
+\end{lstlisting}
+
+
+
+\subsection{Useful blank lines to add}
+The following lines need a blank line to separate sections of code:
+\begin{lstlisting}[firstnumber=18, caption={Lines 18-19 violation of the rule}]
+*/
+package org.apache.ofbiz.ebaystore;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=18, caption={Lines 18-19 possible solution}]
+*/
+
+package org.apache.ofbiz.ebaystore;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=37, caption={Lines 37-38 violation of the rule}]
+import com.ebay.sdk.call.GetDescriptionTemplatesCall;
+import com.ebay.soap.eBLBaseComponents.BestOfferEnabledDefinitionType;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=37, caption={Lines 37-38 possible solution}]
+import com.ebay.sdk.call.GetDescriptionTemplatesCall;
+
+import com.ebay.soap.eBLBaseComponents.BestOfferEnabledDefinitionType;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=58, caption={Lines 58-59 violation of the rule}]
+public static final String module = EbayStoreCategoryFacade.class.getName();
+private ApiContext apiContext = null;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=58, caption={Lines 58-59 possible solution}]
+public static final String module = EbayStoreCategoryFacade.class.getName();
+
+private ApiContext apiContext = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=122, caption={Lines 122-123 violation of the rule}]
+}
+//get returnPolicyEnabled feature
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=122, caption={Lines 122-123 possible solution}]
+}
+
+//get returnPolicyEnabled feature
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=184, caption={Lines 184-185 violation of the rule}]
+CategoryFeatureType cf = cfsMap.get(catId);
+// invoke the method indicated by methodName
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=184, caption={Lines 184-185 possible solution}]
+CategoryFeatureType cf = cfsMap.get(catId);
+
+// invoke the method indicated by methodName
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=229, caption={Lines 229-230 violation of the rule}]
+ resp = (GetDescriptionTemplatesResponseType) call.execute(req);
+ if (resp != null && "SUCCESS".equals(resp.getAck().toString())) {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=229, caption={Lines 229-230 possible solution}]
+ resp = (GetDescriptionTemplatesResponseType) call.execute(req);
+
+ if (resp != null && "SUCCESS".equals(resp.getAck().toString())) {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=284, caption={Lines 284-285 violation of the rule}]
+ List<Map<String,Object>> themes = new LinkedList<Map<String,Object>>();
+ for (Map<String,Object> temp : this.adItemTemplates) {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=284, caption={Lines 284-285 possible solution}]
+ List<Map<String,Object>> themes = new LinkedList<Map<String,Object>>();
+
+ for (Map<String,Object> temp : this.adItemTemplates) {
+\end{lstlisting}
+
+
+\section{Comments}
+\subsection{Classes, interfaces, methods not described}
+The following classes and methods should be properly described using Javadoc comments:
+\begin{lstlisting}[firstnumber=57, caption={EbayStoreCategoryFacade class Javadoc missing}]
+public class EbayStoreCategoryFacade {...}
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=74, caption={Constructor description missing}]
+public EbayStoreCategoryFacade(String catId, ApiContext apiContext,
+        IAttributesMaster attrMaster,
+        EbayStoreSiteFacade siteFacade)
+    throws SdkException, Exception {...}
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=82, caption={Method description missing}]
+private void syncCategoryMetaData() throws SdkException, Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=89, caption={Method description missing}]
+private void syncJoinedAttrSets() throws SdkException, Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=98, caption={Method description missing}]
+private void syncNameRecommendationTypes() throws ApiException, SdkException, Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=110, caption={Method description missing}]
+public void syncCategoryFeatures() throws Exception {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=220, caption={Method description missing}]
+public List<Map<String,Object>> syncAdItemTemplates()
+	throws ApiException, SdkSoapException, SdkException {...}
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=329, caption={Method description missing}]
+public boolean AttributesEnabled() {...}
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=161, caption={method Javadoc missing}]
+private static BuyerPaymentMethodCodeType[] fiterPaymentMethod(BuyerPaymentMethodCodeType[] paymentMethods) {...}
+\end{lstlisting}
+
+\subsection{Javadoc tags not described}
+The following Javadoc tags should be more clear, specifying when a null value may be returned or an excpetion thrown.
+
+\begin{lstlisting}[firstnumber=177, caption={tags not described}]
+/**
+* @return generic Object
+* @throws Exception
+*/
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=205, caption={tags not described}]
+/**
+* @return generic object
+*/
+\end{lstlisting}
+
+\subsection{Complex statement not described}
+The following complex statements should be better documented to explain what they do.
+
+\begin{lstlisting}[firstnumber=233, caption={complex for not documented}]
+for (DescriptionTemplateType descTemplateType : descriptionTemplateTypeList) {
+    List<Map<String,Object>> templateList = null;
+    Map<String,Object> templateGroup = null;
+    if ("THEME".equals(String.valueOf(descTemplateType.getType()))) {
+        Map<String,Object> template = new HashMap<String, Object>();
+        template.put("TemplateId", String.valueOf(descTemplateType.getID()));
+        template.put("TemplateImageURL", descTemplateType.getImageURL());
+        template.put("TemplateName", descTemplateType.getName());
+        template.put("TemplateType", descTemplateType.getType());
+
+        // check group template by groupId
+        for (Map<String,Object> temGroup : temGroupList) {
+            if (temGroup.get("TemplateGroupId").equals(descTemplateType.getGroupID().toString())) {
+                templateGroup = temGroup;
+                break;
+            }
+        }
+        if (templateGroup == null) {
+            templateGroup = new HashMap<String, Object>();
+            templateList = new LinkedList<Map<String,Object>>();
+            templateGroup.put("TemplateGroupId", descTemplateType.getGroupID().toString());
+            templateList.add(template);
+            templateGroup.put("Templates", templateList);
+            temGroupList.add(templateGroup);
+        } else {
+            if (templateGroup.get("Templates") != null) {
+                templateList = UtilGenerics.checkList(templateGroup.get("Templates"));
+                templateList.add(template);
+            }
+        }
+    } else if ("Layout".equals(String.valueOf(descTemplateType.getType()))) {
+    }
+}
+\end{lstlisting}
+
+
+
+
+\section{Java source files}
+Javadoc descriptions are missing for all the classes and methods.
+
+\section{Class and interface declarations}
+\subsection{Methods grouping by functionality}
+The following method is in the middle of a group of getter methods, grouped by a functionality:
+\begin{lstlisting}[firstnumber=330, caption={AttributesEnabled method in the middle of getters}]
+public boolean AttributesEnabled() {
+    return this.joinedAttrSets != null && this.joinedAttrSets.length > 0;
+}
+\end{lstlisting}
+\section{Method calls}
+The following methods are invoked on objects that may be null therefore is needed a check:
+
+\begin{lstlisting}[firstnumber=93, caption={getItemSpecificAttributeSetsForCategories invocation}]
+ AttributeSet[] itemSpecAttrSets = attrMaster.getItemSpecificAttributeSetsForCategories(ids);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=93, caption={getItemSpecificAttributeSetsForCategories invocation possible solution}]
+AttributeSet[] itemSpecAttrSets = null;
+if(attrMaster != null){
+     itemSpecAttrSets = attrMaster.getItemSpecificAttributeSetsForCategories(ids);
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=94, caption={getSiteWideAttributeSetsForCategories invocation}]
+AttributeSet[] siteWideAttrSets = attrMaster.getSiteWideAttributeSetsForCategories(ids);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=94, caption={getSiteWideAttributeSetsForCategories invocation possible solution}]
+AttributeSet[] siteWideAttrSets = null;
+if(attrMaster != null){
+    siteWideAttrSets = attrMaster.getSiteWideAttributeSetsForCategories(ids);
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=95, caption={joinItemSpecificAndSiteWideAttributeSets invocation}]
+AttributeSet[] joinedAttrSets = attrMaster.joinItemSpecificAndSiteWideAttributeSets(itemSpecAttrSets, siteWideAttrSets);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=95, caption={joinItemSpecificAndSiteWideAttributeSets invocation possible solution}]
+AttributeSet[] joinedAttrSets = null;
+if(aif != null){
+    joinedAttrSets = attrMaster.joinItemSpecificAndSiteWideAttributeSets (itemSpecAttrSets, siteWideAttrSets);
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=108, caption={getNameRecommendation invocation}]
+this.nameRecommendationTypes = recommendations.getNameRecommendation();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=108, caption={getNameRecommendation invocation possible solution}]
+if(recommendations != null){
+    this.nameRecommendationTypes = recommendations.getNameRecommendation();
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=112, caption={get invocation}]
+Map<String, CategoryType> categoriesCacheMap = this.siteFacade.getSiteCategoriesMap().get(apiContext.getSite());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=112, caption={get invocation possible solution}]
+Map<String, CategoryType> categoriesCacheMap = null;
+if(this.siteFacade.getSiteCategoriesMap() != null){
+    categoriesCacheMap = this.siteFacade.getSiteCategoriesMap().get(apiContext.getSite());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=114, caption={get invocation}]
+Map<String, CategoryFeatureType> cfsMap = this.siteFacade.getSiteCategoriesFeaturesMap(). get(apiContext.getSite());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=114, caption={get invocation possible solution}]
+Map<String, CategoryFeatureType> cfsMap = null;
+if(this.siteFacade.getSiteCategoriesFeaturesMap() != null){
+    cfsMap = this.siteFacade.getSiteCategoriesFeaturesMap(). get(apiContext.getSite());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=115, caption={get invocation}]
+SiteDefaultsType siteDefaults = this.siteFacade.getSiteFeatureDefaultMap().get(apiContext.getSite());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=115, caption={get invocation possible solution}]
+SiteDefaultsType siteDefaults = null;
+if(this.siteFacade.getSiteFeatureDefaultMap() != null){
+    siteDefaults = this.siteFacade.getSiteFeatureDefaultMap().get(apiContext.getSite());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=116, caption={get invocation}]
+FeatureDefinitionsType featureDefinition = this.siteFacade.getSiteFeatureDefinitionsMap().get(apiContext.getSite());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=116, caption={get invocation possible solution}]
+FeatureDefinitionsType featureDefinition = null;
+if(this.siteFacade.getSiteFeatureDefinitionsMap() != null){
+    featureDefinition = this.siteFacade.getSiteFeatureDefinitionsMap(). get(apiContext.getSite());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=121, caption={getItemSpecificsEnabled invocation}]
+itemSpecificEnabled = siteDefaults.getItemSpecificsEnabled();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=121, caption={getItemSpecificsEnabled invocation possible solution}]
+if(siteDefaults != null){
+   itemSpecificEnabled = siteDefaults.getItemSpecificsEnabled();
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=126, caption={isReturnPolicyEnabled invocation}]
+retPolicyEnabled = siteDefaults.isReturnPolicyEnabled();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=126, caption={isReturnPolicyEnabled invocation possible solution}]
+if(siteDefaults != null){
+   retPolicyEnabled = siteDefaults.isReturnPolicyEnabled();
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=130, caption={getListingDurations invocation}]
+ListingDurationDefinitionsType listDuration = featureDefinition.getListingDurations();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=130, caption={getListingDurations invocation possible solution}]
+ListingDurationDefinitionsType listDuration = null;
+if(featureDefinition != null){
+   listDuration = featureDefinition.getListingDurations();
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=131, caption={getListingDuration invocation}]
+ListingDurationDefinitionType[] durationArray = listDuration.getListingDuration();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=131, caption={getListingDuration invocation possible solution}]
+ListingDurationDefinitionType[] durationArray;
+if(featureDefinition != null){
+   durationArray = listDuration.getListingDuration();
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=134, caption={getDuration invocation}]
+listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=134, caption={getDuration invocation possible solution}]
+if(durationArray[i] != null){
+    listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=134, caption={getDurationSetID invocation}]
+listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=134, caption={getDurationSetID invocation possible solution}]
+if(durationArray[i] != null){
+    listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=134, caption={getDurationSetID invocation}]
+listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=134, caption={getDurationSetID invocation possible solution}]
+if(durationArray[i] != null){
+    listingDurationMap.put(durationArray[i].getDurationSetID(), durationArray[i].getDuration());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=144, caption={getType invocation}]
+listingDurationReferenceMap.put(listingDuration[i] .getType().value(),listingDuration[i].getValue());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=144, caption={getType invocation possible solution}]
+if(listingDuration[i] != null){
+    listingDurationReferenceMap.put(listingDuration[i] .getType().value(),listingDuration[i].getValue());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=144, caption={getValue invocation}]
+listingDurationReferenceMap.put(listingDuration[i] .getType().value(),listingDuration[i].getValue());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=144, caption={getValue invocation possible solution}]
+if(listingDuration[i] != null){
+    listingDurationReferenceMap.put(listingDuration[i] .getType().value(),listingDuration[i].getValue());
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=192, caption={get invocation}]
+CategoryType cat = categoriesCacheMap.get(catId);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=192, caption={get invocation possible solution}]
+CategoryType cat = null;
+if(categoriesCacheMap != null){
+    cat = categoriesCacheMap.get(catId);
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=194, caption={getCategoryLevel invocation}]
+if (cat.getCategoryLevel() == 1)
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=194, caption={getCategoryLevel invocation possible solution}]
+if(cat != null && cat.getCategoryLevel() == 1)
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=199, caption={getCategoryParentID invocation}]
+return getInheritProperty(cat.getCategoryParentID(0), methodName, categoriesCacheMap, cfsMap);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=199, caption={getCategoryParentID invocation possible solution}]
+return cat != null ? getInheritProperty(cat.getCategoryParentID(0), methodName, categoriesCacheMap, cfsMap) : null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=245, caption={get invocation}]
+if (temGroup.get("TemplateGroupId") .equals(descTemplateType.getGroupID().toString()))
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=245, caption={get invocation possible solution}]
+if (temGroup != null && temGroup.get("TemplateGroupId") .equals(descTemplateType.getGroupID().toString()))
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=286, caption={get invocation}]
+if (temp.get("TemplateGroupId").equals(temGroupId))
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=286, caption={get invocation possible solution}]
+if (temp != null && temp.get("TemplateGroupId").equals(temGroupId))
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\section{Other errors}
+
+The following else if statement should have at least a correct statement to execute.
+\begin{lstlisting}[firstnumber=263, caption={statement does nothing}]
+} else if ("Layout".equals(String.valueOf(descTemplateType.getType()))) {
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+The following declarations of data structures such as Map and HashMap should have a whitespace after the comma:
+\begin{lstlisting}[firstnumber=67, caption={withespace needed after comma}]
+private Map<Integer,String[]> listingDurationMap = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=68, caption={withespace needed after comma}]
+private Map<String,Integer> listingDurationReferenceMap = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=73, caption={withespace needed after comma}]
+private List<Map<String,Object>> adItemTemplates = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=73, caption={withespace needed after comma}]
+private List<Map<String,Object>> adItemTemplates = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=221, caption={withespace needed after comma}]
+public List<Map<String,Object>> syncAdItemTemplates() throws ApiException, SdkSoapException, SdkException {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=224, caption={withespace needed after comma}]
+List<Map<String,Object>> temGroupList = new LinkedList<Map<String,Object>>();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=234, caption={withespace needed after comma}]
+List<Map<String,Object>> templateList = null;
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+ \begin{lstlisting}[firstnumber=235, caption={withespace needed after comma}]
+Map<String,Object> templateGroup = null;
+
+Map<String,Object> template = new HashMap<String, Object>();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+
+ \begin{lstlisting}[firstnumber=244, caption={withespace needed after comma}]
+for (Map<String,Object> temGroup : temGroupList) {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+  \begin{lstlisting}[firstnumber=252, caption={withespace needed after comma}]
+templateList = new LinkedList<Map<String,Object>>();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+  \begin{lstlisting}[firstnumber=252, caption={withespace needed after comma}]
+for (Map<String,Object> temGroup : temGroupList) {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=283, caption={withespace needed after comma}]
+public List<Map<String,Object>> getAdItemTemplates(String temGroupId) {
+    List<Map<String,Object>> themes = new LinkedList<Map<String,Object>>();
+    for (Map<String,Object> temp : this.adItemTemplates) {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=342, caption={withespace needed after comma}]
+public List<Map<String,Object>> getAdItemTemplates() {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+The string concatenation should have white spaces before and after the `+` sign.
+\begin{lstlisting}[firstnumber=232, caption={withespace needed after comma}]
+Debug.logInfo("layout of category "+ this.catId +":"+ resp.getLayoutTotal(), module);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
