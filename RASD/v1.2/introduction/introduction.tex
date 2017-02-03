@@ -1,0 +1,108 @@
+\chapter{Introduction}
+
+\section{Purpose}
+This document represents the Requirement Analysis and Specification Document \(RASD\).
+Its aim is to provide a first overview of the system that we want to develop and its main functionalities, in terms of functional requirements, nonfunctional requirements and constraints.
+We will integrate these specifications with several diagrams in order to highlight the constraints of our system and its boundaries.
+
+This document is addressed to the developers and programmers, who have to implement it, and to the customers to let them have a first view of the system and the possibility to give us feedbacks according to their needs and opinions.
+
+\section{Actual system}
+The company is starting its business right now, so we assume that there is no system providing the requested service.
+All the functionalities have to be developed from the beginning.
+To develop some functionalities of PowerEnjoy we will rely on external services.
+
+\section{Scope}
+The aim of the project PowerEnjoy is to provide an automated service of car sharing.
+After a registration, a client can hire a car near him/her through the web or mobile application and he/she can enjoy of all the extra services offered.
+The exact position of the client is determined by the GPS signal of the client’s device or it’s allowed to manually insert a specific address.
+So the system displays all the available cars in the client’s close area.
+Then the client could make a reservation of a car, after which the system notifies the client with a message of confirmation with the car identifier.
+If the reservation procedure successfully ends the chosen car won’t be available anymore for other clients.
+Moreover a client cannot hire more than one car at the same time.
+After the reservation the client has at most one hour to reach the car, when this time expires the system gives a penalty to the client and the car, previously hired, is available again for other clients.
+The system allows the client to cancel his/her reservation.
+When the client reaches the car, he/she can tell the system that is nearby through a specific button in the application and he/she starts to pay as soon as the engine ignites.
+During the travel the system supervises the current charge of the car and notifies it to the client through a screen located in the car.
+The system stops charging the amount of money that the client has to pay when he/she communicates through the application his/her decision to stop the rent.
+When the car is parked in a safe area and the client exits, the system locks the car automatically and starts the procedure of payment.
+The client is notified with the result of this procedure through an SMS, including the final fare.
+
+\section{Actors}
+\begin{itemize}
+\item \textbf{Guest:} a person that is not already registered in the system or that has to log in.
+He/she can only display the home page, with the description of the provided services, and the registration page.
+\item \textbf{Registered Client:} a person who has valid access credentials to log in the system (username and password).
+Once logged in, he/she can request and hire an available car near him/her, cancel a reservation and he/she have access to all the customer area of the application.
+\item \textbf{System Administrators:} a certified user who, after login, has the responsibility to manage administration processes.
+He is also in charge of updating data about business logic.
+
+\end{itemize}
+\section{Goals}
+\begin{enumerate}[label=\textbf{G\arabic*)}]
+\item The Registered Client can hire a car through web/mobile application.
+\item The Registered Client can hire a car through an SMS.
+\item The Guest Client can register himself/herself into the system as Registered Client.
+\item Registered Clients can login into the system.
+\item The Logged Client can manage his/her sensible data.
+\item The Registered Client can manage his/her requests of hiring.
+\item Ensure the Registered Client the possibility to receive a discount on his/her last ride.
+\item Ensure a uniform distribution of cars in the city.
+\item Guarantee to have always a minimum number of cars in the system with enough charge to be hired.
+\item Allow the system administrator to update and check data in the database of the system.
+\item Guarantee a correct interoperability of the system with external services.
+\item Ensure that a Registered Client’s bad behaviour is punished with the application of some penalties.
+\end{enumerate}
+
+\section{Definition, acronyms, abbrevations}
+
+\subsection{Definition}
+
+\begin{itemize}
+\item \textbf{Guest client:} a person that is not already registered in the system or that has to log in.
+\item \textbf{Registered client:} a person who has valid access credentials to log in the system.
+\item \textbf{System administrator:} privileged user, in charge of managing administration processes and of updating business logic.
+\item \textbf{Reservation = request:} it is the action performed by a registered client that allow him/her to reserve an available car for maximum one hour.
+\item \textbf{Journey time = travel time:} time elapsed since the user starts the engine to the user parks the car and terminates the journey.
+\item \textbf{Available car:} a car that is not reserved by any user and has enough charge to be rented.
+\item \textbf{Unavailable car:} a car that is already reserved or damaged, so impossible to reserve.
+\item \textbf{Gps navigation:} it is the navigation system that is included in the car on board system. It could be used by the user to find direction to the final destination.
+\item \textbf{Final destination:} address where the user wants to go.
+\item \textbf{Safe area:} the region where is permitted to park and leave a car once the rent is terminated.
+\item \textbf{Power grid station:} the area where it’s allowed users to park the cars, leaving them attached to the power grid.
+\end{itemize}
+
+\subsection{Acronyms}
+
+\begin{itemize}
+\item \textbf{RASD:} Requirements Analysis and Specification Document
+\item \textbf{API:} Application Programming Interface
+\item \textbf{UI:} User Interface
+\end{itemize}
+
+\subsection{Abbrevetations}
+
+\begin{itemize}
+\item \textbf{{[Gn]}:} n-goal
+\item \textbf{{[Rn]}:} n-functional requirement
+\item \textbf{{[An]}:} n-assumption
+\end{itemize}
+
+\section{Identify stakeholders}
+
+Our main stakeholder is the owner of PowerEnjoy that wants a state-of-the-art application in order to let users to easily locate, reserve, use and pay a fleet of shared electric cars spread across the city.
+
+\section{Reference documents}
+
+\begin{itemize}
+\item PowerEnjoy specification document (assignment).
+\item IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements Specifications.
+\end{itemize}
+\section{Document overview}
+The document is substantially divided in 4 sections:
+\begin{itemize}
+\item Introduction: it gives an high-level description of the software explaining the main purposes, goals and context;
+\item Overall description: it provides an overview of the main characteristics of the system to develop, pointing out in particular constraints and assumptions.
+\item Specific Requirements: this part contains all the system requirements, typical scenarios and different kind of diagrams useful to understand easily the functionalities.
+\item Alloy: the last part of the document contains the description of our model in Alloy, a possible result obtained using this software and the consequent generated world.
+\end{itemize}
