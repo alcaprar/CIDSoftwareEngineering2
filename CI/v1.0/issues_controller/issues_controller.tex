@@ -1,0 +1,245 @@
+\chapter{Issues related to ControllerViewArtifactInfo class}
+
+\section{Naming conventions}
+\subsection{Wrong naming conventions}
+The class attribute \method{module} is declared at line 36 as static final and therefore its name should be in uppercase.
+\begin{lstlisting}[firstnumber=36, caption={Issue}]
+public static final String module = ControllerViewArtifactInfo.class.getName();
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=36, caption={Possible solution}]
+public static final String MODULE = ControllerViewArtifactInfo.class.getName();
+\end{lstlisting}
+
+\subsection{Meaningless names}
+The name of the variable \method{that}, declared at line 114, is meaningless.
+\begin{lstlisting}[firstnumber=114, caption={Issue}]
+ControllerViewArtifactInfo that = (ControllerViewArtifactInfo) obj;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=114, caption={Possible solution}]
+ControllerViewArtifactInfo cvai = (ControllerViewArtifactInfo) obj;
+\end{lstlisting}
+
+
+\section{File organization}
+
+\subsection{Lines length more than 80 characters}
+The following lines exceed 80 characters but are still acceptable:
+
+\begin{lstlisting}[firstnumber=36, caption={Line 36 acceptable violation of the rule}]
+public static final String module = ControllerViewArtifactInfo.class.getName();
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=59, caption={Line 59 acceptable violation of the rule}]
+// populate screenCalledByThisView and reverse in aif.allViewInfosReferringToScreen
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=84, caption={Line 84 acceptable violation of the rule}]
+String location = UtilURL.getOfbizHomeRelativeLocation(this.controllerXmlUrl);
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=115, caption={Line 115 acceptable violation of the rule}]
+return UtilObject.equalsHelper(this.controllerXmlUrl, that.controllerXmlUrl) &&
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=122, caption={Line 122 acceptable violation of the rule}]
+public Set<ControllerRequestArtifactInfo> getRequestsThatThisViewIsResponseTo() {
+\end{lstlisting}
+
+The following lines exceed 80 characters and may be reformatted in a better way:
+\begin{lstlisting}[firstnumber=60, caption={Line 60 violation of the rule}]
+if ("screen".equals(this.viewInfoMap.type) || "screenfop".equals(this.viewInfoMap.type) ||
+                "screentext".equals(this.viewInfoMap.type) || "screenxml".equals(this.viewInfoMap.type)) {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=60, caption={Line 60 possible solution}]
+if ("screen".equals(this.viewInfoMap.type) ||
+    "screenfop".equals(this.viewInfoMap.type) ||
+    "screentext".equals(this.viewInfoMap.type) ||
+    "screenxml".equals(this.viewInfoMap.type)) {
+\end{lstlisting}
+
+\subsection{Lines length more than 120 characters}
+The following lines exceed 120 characters and must be reformatted in a better way:
+\begin{lstlisting}[firstnumber=45, caption={Line 45 violation of the rule}]
+public ControllerViewArtifactInfo(URL controllerXmlUrl, String viewUri, ArtifactInfoFactory aif) throws GeneralException {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=45, caption={Line 45 possible solution}]
+public ControllerViewArtifactInfo(URL controllerXmlUrl,
+                                  String viewUri,
+                                  ArtifactInfoFactory aif)
+    throws GeneralException {
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=53, caption={Line 53 violation of the rule}]
+throw new GeneralException("Could not find Controller View [" + viewUri + "] at URL [" + controllerXmlUrl.toExternalForm() + "]");
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=53, caption={Line 53 possible solution}]
+throw new GeneralException("Could not find Controller View [" + viewUri + "]" +
+" at URL [" + controllerXmlUrl.toExternalForm() + "]");
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=57, caption={Line 57 violation of the rule}]
+throw new GeneralException("Controller view with name [" + viewUri + "] is not defined in controller file [" + controllerXmlUrl + "].");
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=57, caption={Line 57 possible solution}]
+throw new GeneralException("Controller view with name [" + viewUri + "]" +
+" is not defined in controller file [" + controllerXmlUrl + "].");
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=65, caption={Line 65 violation of the rule}]
+this.screenCalledByThisView = this.aif.getScreenWidgetArtifactInfo(fullScreenName.substring(poundIndex+1), fullScreenName.substring(0, poundIndex));
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=65, caption={Line 65 possible solution}]
+this.screenCalledByThisView = this.aif.getScreenWidgetArtifactInfo
+    (fullScreenName.substring(poundIndex+1), fullScreenName.substring(0, poundIndex));
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+\begin{lstlisting}[firstnumber=68, caption={Line 68 violation of the rule}]
+UtilMisc.addToSortedSetInMap(this, aif.allViewInfosReferringToScreen, this.screenCalledByThisView.getUniqueId());
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=68, caption={Line 68 possible solution}]
+UtilMisc.addToSortedSetInMap(this,
+                            aif.allViewInfosReferringToScreen,
+                            this.screenCalledByThisView.getUniqueId());
+\end{lstlisting}
+
+\subsection{Unuseful blank lines to remove}
+The following blank lines are not useful to separate declarations of variables:
+\begin{lstlisting}[firstnumber=40, caption={Lines 40-45 violation of the rule}]
+protected URL controllerXmlUrl;
+protected String viewUri;
+
+protected ConfigXMLReader.ViewMap viewInfoMap;
+
+protected ScreenWidgetArtifactInfo screenCalledByThisView = null;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=47, caption={Lines 47-50 violation of the rule}]
+this.controllerXmlUrl = controllerXmlUrl;
+this.viewUri = viewUri;
+
+this.viewInfoMap = aif.getControllerViewMap(controllerXmlUrl, viewUri);
+\end{lstlisting}
+
+\subsection{Useful blank lines to add}
+The following lines need a blank line to separate sections of code:
+\begin{lstlisting}[firstnumber=18, caption={Lines 18-19 violation of the rule}]
+*/
+package org.apache.ofbiz.webtools.artifactinfo;
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=18, caption={Lines 18-19 possible solution}]
+*/
+
+package org.apache.ofbiz.webtools.artifactinfo;
+\end{lstlisting}
+
+\section{Package and import statements}
+The following declaration could be improved modifying the import statement:
+\begin{lstlisting}[firstnumber=41, caption={Line 41 issue}]
+protected ConfigXMLReader.ViewMap viewInfoMap;
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=30, caption={Line 41 possible solution}]
+import org.apache.ofbiz.webapp.control.ConfigXMLReader.ViewMap;
+
+/**
+ *
+ */
+public class ControllerViewArtifactInfo extends ArtifactInfoBase {
+    public static final String module = ControllerViewArtifactInfo.class.getName();
+
+    protected URL controllerXmlUrl;
+    protected String viewUri;
+
+    protected ViewMap viewInfoMap;
+\end{lstlisting}
+
+\section{Comments}
+\subsection{Classes, interfaces, methods not described}
+The following classes and methods should be properly described using Javadoc comments:
+\begin{lstlisting}[firstnumber=32, caption={ControllerViewArtifactInfo class description missing}]
+/**
+ *
+ */
+public class ControllerViewArtifactInfo extends ArtifactInfoBase {
+\end{lstlisting}
+
+\begin{lstlisting}[firstnumber=44, caption={Constructor description missing}]
+public ControllerViewArtifactInfo(URL controllerXmlUrl, String viewUri, ArtifactInfoFactory aif) throws GeneralException {
+\end{lstlisting}
+
+\section{Java source files}
+Javadoc descriptions are missing for all the classes and methods.
+
+\section{Class and interface declarations}
+\subsection{Methods grouping by functionality}
+The following method is in the middle of a group of getter methods, grouped by a functionality:
+\begin{lstlisting}[firstnumber=113, caption={equals method in the middle of getters}]
+@Override
+public boolean equals(Object obj) {
+    if (obj instanceof ControllerViewArtifactInfo) {
+        ControllerViewArtifactInfo that = (ControllerViewArtifactInfo) obj;
+        return UtilObject.equalsHelper(this.controllerXmlUrl, that.controllerXmlUrl) &&
+            UtilObject.equalsHelper(this.viewUri, that.viewUri);
+    } else {
+        return false;
+    }
+}
+\end{lstlisting}
+
+\section{Initialization and declarations}
+The following string should be declared as \method{private static final} variable and used instead of the plain text.
+\begin{lstlisting}[firstnumber=113, caption={Constant is missing}]
+if (location.endsWith("/WEB-INF/controller.xml")) {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=112, caption={Possible solution},label{lst:constant}]
+private static final WEB-INF-CONTROLLER = "/WEB-INF/controller.xml";
+if (location.endsWith(WEB-INF-CONTROLLER)) {
+\end{lstlisting}
+
+\section{Method calls}
+
+\subsection{Hard-coded values}
+The following method should have as \method{endIndex} a parameter related to the string constant proposed in the listing \ref{lst:label} and not an hard-coded value.
+\begin{lstlisting}[firstnumber=88, caption={substring invocation}]
+location = location.substring(0, location.length() - 23);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=86, caption={substring invocation possible solution}]
+private static final WEB-INF-CONTROLLER = "/WEB-INF/controller.xml";
+if (location.endsWith("/WEB-INF/controller.xml")) {
+     location = location.substring(0, location.length() - WEB-INF-CONTROLLER.lenght);
+}
+\end{lstlisting}
+\subsection{Method invocations on posssible null objects}
+The following methods are invoked on objects that may be null therefore is needed a check:
+
+\begin{lstlisting}[firstnumber=50, caption={getControllerViewMap invocation}]
+this.viewInfoMap = aif.getControllerViewMap(controllerXmlUrl, viewUri);
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=50, caption={getControllerViewMap invocation possible solution}]
+if(aif!=null){
+    this.viewInfoMap = aif.getControllerViewMap(controllerXmlUrl, viewUri);
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\begin{lstlisting}[firstnumber=87, caption={getControllerViewMap invocation}]
+if (location.endsWith("/WEB-INF/controller.xml")) {
+\end{lstlisting}
+\begin{lstlisting}[firstnumber=87, caption={getControllerViewMap invocation possible solution}]
+if(location!=null){
+    if (location.endsWith("/WEB-INF/controller.xml")) {
+}
+\end{lstlisting}
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\section{Other errors}
+The following second \method{if} statement is useless. It will never be executed.
+\begin{lstlisting}[firstnumber=52, caption={Exeption would block the second if}]
+if (this.viewInfoMap == null) {
+    throw new GeneralException("Could not find Controller View [" + viewUri + "] at URL [" + controllerXmlUrl.toExternalForm() + "]");
+}
+if (this.viewInfoMap == null) {
+    throw new GeneralException("Controller view with name [" + viewUri + "] is not defined in controller file [" + controllerXmlUrl + "].");
+}
+\end{lstlisting}
+
+
