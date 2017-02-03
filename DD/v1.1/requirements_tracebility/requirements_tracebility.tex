@@ -1,0 +1,146 @@
+\chapter{Requirements traceability}
+The following table maps the requirements identified in the RASD document (section 3.2) to the design decisions taken in this DD.
+\begin{longtable}{|l|l|}
+\hline
+Requirements & Design decisions \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G1]} - The Registered Client can hire a car through web/mobile application
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item UserApplication
+\item ReservationController
+\item CarStatusManager
+\item OnBoardApplication
+\item CostManager
+\item PaymentGateway
+\item CarDistributionManager
+\item AuthController
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G2]} - The Registered Client can hire a car through an SMS.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item SMS ReservationManager
+\item ReservationController
+\item CarStatusManager
+\item OnBoardApplication
+\item CostManager
+\item PaymentGateway
+\item AuthController
+\item CarDistributionManager
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G3]} - The Guest Client can register himself/herself into the system as Registered Client.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item UserApplication
+\item UserController
+\item NotificationManager
+\item PaymentGateway
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G4]} - Registered Clients can login into the system.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item UserApplication
+\item AuthController
+\item UserController
+\item NotificationManager
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G5]} - The Logged Client can manage his/her sensible data.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item UserApplication
+\item UserController
+\item NotificationManager
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G6]} - The Registered Client can manage his/her requests of hiring.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item UserApplication
+\item UserController
+\item ReservationController
+\item SMSReservationManager
+\item CarStatusManager
+\item NotificationManager
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G7]} - Ensure the Registered Client the possibility to receive a discount on his/her last ride.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item OnBoardApplication
+\item CostManager
+\item ReservationController
+\item CarDistributionManager
+\item CarStatusManager
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G8]} - Ensure a uniform distribution of cars in the city.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item OnBoardApplication
+\item CarDistributionManager
+\item ReservationController
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G9]} - Guarantee to have always a minimum number of cars in the system with enough charge to be hired.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item SystemAdminApplication
+\item CarStatusManager
+\item SystemAdminController
+\end{itemize}
+\end{minipage} \\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G10]} - Allow the system administrator to update and check data in the database of the system.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item SystemAdminApplication
+\item SystemAdminController
+\item AuthController
+\end{itemize}
+\end{minipage}\\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G11]} - Guarantee a correct interoperability of the system with external services.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item SMSGatewayInterface
+\item PushNotificationGatewayInterface
+\item PaymentGatewayInterface
+\item MapsAPIInterface
+\item DrivingLicenceAPIInterface
+\end{itemize}
+\end{minipage}\\ \hline
+\begin{minipage}[t]{0.5\textwidth}
+\textbf{[G12]} - Ensure that a Registered Client’s bad behaviour is punished with the application of some penalties.
+\end{minipage} &
+\begin{minipage}[t]{0.45\textwidth}
+\begin{itemize}
+\item ReservationController
+\item CostManager
+\item OnBoardApplication
+\item CarDistributionManage
+\end{itemize}
+\end{minipage}\\ \hline
+\end{longtable}
